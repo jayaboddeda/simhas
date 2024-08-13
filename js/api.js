@@ -95,56 +95,67 @@ async function loadProjectsByCategory(categoryId) {
                 </div>
             `;
             projectContainer.innerHTML += projectHTML;
-            try {
-
-                var $isotopeWrapper = $('.js-isotope-wrapper');
-        
-                $isotopeWrapper.each(function () {
-                    var that = $(this);
-                    var isotopeFilter = that.find('.iostope-filter');
-                    var isotopeContent = that.find('.isotope-content');
-        
-                    var $dataHori = false;
-                    if(that.data('isotope-hori'))
-                        $dataHori = that.data('isotope-hori');
-                        setTimeout(function() {
-                    // init Isotope
-                        var $iso = isotopeContent.isotope({
-                            itemSelector: '.isotope-item',
-                            percentPosition: true,
-                            animationEngine : 'best-available',
-                            masonry: {
-                                columnWidth: '.isotope-item-sizer',
-                                horizontalOrder: $dataHori
-                            }
-                        });
-        
-                        $iso.imagesLoaded().progress( function() {
-                            $iso.isotope('layout');
-                        });
-        
-                        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                            $iso.isotope('layout');
-                        })
-        
-                    }, 1000); 
-                    isotopeFilter.on('click', 'li span', function () {
-                        isotopeContent.isotope({filter: $(this).attr('data-filter')});
-                    });
-        
-                    isotopeFilter.on('click', 'li', function () {
-                        isotopeFilter.find('.active').removeClass('active');
-                        $(this).addClass('active');
-                    });
-        
-        
-                });
-        
-            } catch(err) {
-                console.log(err)
-            }
         });
+
+        // Ensure DOM update before initializing Isotope
+        await initializeIsotope();
     } else {
         console.error(`No project data found for category ID: ${categoryId}.`);
     }
 }
+
+function initializeIsotope() {
+    return new Promise((resolve) => {
+        // Use requestAnimationFrame to ensure DOM updates are complete
+        requestAnimationFrame(() => {
+            try {
+                var $isotopeWrapper = $('.js-isotope-wrapper');
+
+                $isotopeWrapper.each(function () {
+                    var that = $(this);
+                    var isotopeFilter = that.find('.iostope-filter');
+                    var isotopeContent = that.find('.isotope-content');
+
+                    var $dataHori = false;
+                    if (that.data('isotope-hori'))
+                        $dataHori = that.data('isotope-hori');
+
+                    // Initialize Isotope
+                    var $iso = isotopeContent.isotope({
+                        itemSelector: '.isotope-item',
+                        percentPosition: true,
+                        animationEngine: 'best-available',
+                        masonry: {
+                            columnWidth: '.isotope-item-sizer',
+                            horizontalOrder: $dataHori
+                        }
+                    });
+
+                    $iso.imagesLoaded().progress(function () {
+                        $iso.isotope('layout');
+                    });
+
+                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                        $iso.isotope('layout');
+                    });
+
+                    isotopeFilter.on('click', 'li span', function () {
+                        isotopeContent.isotope({ filter: $(this).attr('data-filter') });
+                    });
+
+                    isotopeFilter.on('click', 'li', function () {
+                        isotopeFilter.find('.active').removeClass('active');
+                        $(this).addClass('active');
+                    });
+                });
+
+                resolve();  // Resolve the promise once Isotope initialization is done
+
+            } catch (err) {
+                console.log(err);
+                resolve();  // Still resolve the promise in case of an error
+            }
+        });
+    });
+}
+
