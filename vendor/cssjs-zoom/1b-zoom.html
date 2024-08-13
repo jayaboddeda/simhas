@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple CSS Hover Zoom Example</title>
+    <style>
+    .zoomBOut {
+      width: 600px; 
+      height: 338px;
+      overflow: hidden;
+      position: relative;
+    }
+    .zoomBIn {
+      width: 100%;
+      height: 100%;
+      background-image: url("music.jpg");
+      background-position: center;
+      background-size: cover;
+      transition: transform ease 0.3s;
+    }
+    .zoomBIn:hover {
+      transform: scale(1.2);
+    }
+    </style>
+  </head>
+  <body>
+    <div class="zoomBOut">
+      <div class="zoomBIn"></div>
+    </div>
+  </body>
+</html>

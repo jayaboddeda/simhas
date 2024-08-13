@@ -1,0 +1,826 @@
+@charset "UTF-8";
+
+/* home page */
+/* @media only screen and (min-width:150) and (max-width:600px) */
+@media (max-width:640px) {
+  .header__content-right1{
+
+    /* text-align:bottom;
+    position: absolute;
+ padding-top: 1120px; */
+ font-size: 90%;
+
+     }
+     .rev-text-1{
+      text-align:center;
+      font-size: 70%;
+      position: absolute;
+      padding-top:120px;
+    
+      line-height: 2em;
+    }
+
+    .rev-text-2d{
+        text-align:center;
+        font-size: 50%;
+        position: absolute;
+        margin-left: 200px;
+      }
+      .rev-text-2b{
+        text-align: center;
+        font-size: 50%;
+        text-transform: uppercase; 
+        position: absolute;
+        margin-left: 200px;
+      }
+      .rev-text-2a{
+        text-align: center;
+        font-size: 50%;
+        text-transform: uppercase; 
+        
+      }
+      .rev-text-2c{
+        text-align: center;
+        font-size: 50%;
+        text-transform: uppercase; 
+        position: absolute;
+        margin-left: 200px;
+      }
+   
+      .rev-text-4b{
+        position: absolute;
+        text-align: center;
+        font-size: 100%;
+      }
+      .rev-text-4a{
+        position: absolute;
+        text-align: center;
+        font-size: 50%;
+       
+    
+      }
+
+    .rev-text-5a{
+      position: absolute;
+      text-align: center;
+      font-size: 100%;
+    }
+    .rev-text-5b{
+      position: absolute;
+      text-align: center;
+      font-size: 100%;
+      text-transform: uppercase; 
+      letter-spacing:0.2em;  
+  
+    }
+  .rev-text-6a{
+    position: absolute;
+    text-align: bottom;
+    padding-bottom: 110px;
+    font-size: 100%; 
+    }
+   
+    .rev-text-6c{
+      position: absolute;
+      text-align: bottom;
+      font-size: 100%; 
+      padding-bottom: 0%;     
+    }
+    .rev-text-6d{
+      position: absolute;
+      text-align: right;
+      padding-bottom: 80px;
+      font-size: 100%; 
+      padding-right: 0px;
+    }
+
+    .rev-text-6b{
+      position: absolute;
+      text-align: bottom;
+      padding-bottom: 80px;
+      font-size: 100%; 
+    }
+
+    .rev-text-7a{
+      position: absolute;
+        text-align: center;
+        font-size: 80%;
+        text-transform: uppercase;
+      }
+      .rev-text-7b{
+        position: absolute;
+        text-align: center;
+        font-size: 80%; 
+      }
+      .rev-text-8a{
+        position: absolute;
+        text-align: center;
+        font-size: 80%;
+        padding-left:300px;
+      }
+      .rev-text-8b{
+        position: absolute;
+        text-align: center;
+        font-size: 80%;
+        text-transform: uppercase; 
+        padding-left: 300px;
+         
+      }
+      .rev-text-9a{
+      
+        text-align: center;
+        font-size: 60%;
+        padding-right: 0%;
+        line-height: 10px;
+        line-height: 30px;
+      }
+      .rev-text-9b{
+      position: absolute;
+        text-align: left;
+        font-size: 50%;
+        text-transform: uppercase; 
+        padding-bottom: 60px;
+      margin-left: 0%;
+      }
+      /* contact page */
+      .title-C1 {
+       
+        font-size: 50%;
+        color: #222;
+        line-height: -webkit-calc(60/48);
+        line-height: -moz-calc(60/48);
+        line-height: calc(60 / 48);
+      }
+       /* contact page */
+        /* aboutus page */
+   .title-A1 {
+    
+    font-size: 50%;
+    color: #222;
+    line-height: -webkit-calc(60/48);
+    line-height: -moz-calc(60/48);
+    line-height: calc(60 / 48);
+  }
+   /* aboutus page */
+  }
+
+  @media (max-width: 736px) {
+
+    /* .header__content-right{
+
+      text-align:right;
+      padding-right: 0%;
+      padding-top:0% ;
+      padding-left: 150px;
+     font-size: 100%;
+
+       } */
+       .rev-text-2d{
+        position: absolute;
+        text-align: center;
+        font-size: 100%;
+      }
+      .rev-text-2b{
+        position: absolute;
+        text-align: center;
+        font-size: 60%;
+        text-transform: uppercase; 
+        
+      }
+      .rev-text-2a{
+        position: absolute;
+        text-align: center;
+        font-size: 60%;
+        text-transform: uppercase; 
+        
+      }
+      .rev-text-2c{
+        position: absolute;
+        text-align: center;
+        font-size: 60%;
+        text-transform: uppercase; 
+        
+      }
+   
+      .rev-text-4b{
+        position: absolute;
+        text-align: center;
+        font-size: 100%;
+      }
+      .rev-text-4a{
+        position: absolute;
+        text-align: center;
+        font-size: 100%;
+        letter-spacing:0.2em;  
+    
+      }
+
+    .rev-text-5a{
+      position: absolute;
+      text-align: center;
+      font-size: 100%;
+    }
+    .rev-text-5b{
+      position: absolute;
+      text-align: center;
+      font-size: 100%;
+      text-transform: uppercase; 
+      letter-spacing:0.2em;  
+  
+    }
+  .rev-text-6a{
+    position: absolute;
+    text-align: bottom;
+    padding-bottom: 110px;
+    font-size: 100%; 
+    }
+   
+    .rev-text-6c{
+      position: absolute;
+      text-align: center;
+      font-size: 100%;        
+    }
+    .rev-text-6d{
+      position: absolute;
+      display: none !important;
+      
+    }
+    .rev-text-6b{
+      position: absolute;
+      text-align: top;
+      padding-top: 80px;
+      font-size: 100%; 
+    }
+
+    .rev-text-7a{
+      position: absolute;
+        text-align: center;
+        font-size: 80%;
+        text-transform: uppercase;
+      }
+      .rev-text-7b{
+        position: absolute;
+        text-align: center;
+        font-size: 80%; 
+      }
+      .rev-text-8a{
+        position: absolute;
+        text-align: center;
+        font-size: 80%;
+        padding-left:300px;
+      }
+      .rev-text-8b{
+        position: absolute;
+        text-align: center;
+        font-size: 80%;
+        text-transform: uppercase; 
+        padding-left: 300px;
+         
+      }
+      .rev-text-9a{
+        position: absolute;
+        text-align: center;
+        font-size: 70%;
+        padding-right: 0%;
+        line-height: 10px;
+        line-height: 30px;
+      }
+      .rev-text-9b{
+        position: absolute;
+        text-align: left;
+        font-size: 60%;
+        text-transform: uppercase; 
+        padding-bottom: 60px;
+        font-weight: lighter;
+      }
+     
+ /* contact page */
+ .title-C1{
+ 
+  font-size: 50%;
+  color: #222;
+  line-height: -webkit-calc(60/48);
+  line-height: -moz-calc(60/48);
+  line-height: calc(60 / 48);
+}
+ /* contact page */
+ /* aboutus page */
+ .title-A1 {
+    
+  font-size: 50%;
+  color: #222;
+  line-height: -webkit-calc(60/48);
+  line-height: -moz-calc(60/48);
+  line-height: calc(60 / 48);
+}
+ /* aboutus page */
+
+  }
+
+  @media only screen and (min-width:736px)and (max-width:1024px){
+
+    /* .header__content-right{
+
+      text-align: right;
+     
+       } */
+
+        .rev-text-2d{
+          text-align: center;
+          position: absolute;
+          font-size: 50%;
+          margin-left: 200px;
+        }
+        .rev-text-2b{
+          text-align: center;
+          position: absolute;
+          font-size: 50%;
+          margin-left: 200px;
+        }
+        .rev-text-2a{
+          text-align: center;
+          position: absolute;
+          font-size: 50%;
+           
+        }
+        .rev-text-2c{
+          text-align:center;
+          position: absolute;
+          font-size: 50%;
+          margin-left: 200px;
+        }
+        .rev-text-6a{
+          text-align: bottom;
+          padding-bottom: 110px;
+          font-size: 100%; 
+          }
+         
+          .rev-text-6c{
+            text-align: center;
+            font-size: 100%;        
+          }
+      
+          .rev-text-6b{
+            text-align: bottom;
+            padding-bottom: 80px;
+            font-size: 100%; 
+          }
+          /* .header__content-right1{
+  
+            text-align:bottom;
+            position: absolute;
+         padding-top: 1120px;
+         font-size: 80%;
+        
+             } */
+   /* contact page */
+   .title-C1 {
+    
+    font-size: 50%;
+    color: #222;
+    line-height: -webkit-calc(60/48);
+    line-height: -moz-calc(60/48);
+    line-height: calc(60 / 48);
+  }
+   /* contact page */
+
+   /* aboutus page */
+   .title-A1 {
+    
+    font-size: 50%;
+    color: #222;
+    line-height: -webkit-calc(60/48);
+    line-height: -moz-calc(60/48);
+    line-height: calc(60 / 48);
+  }
+   /* aboutus page */
+  }
+
+  @media (max-width: 1199px){
+    .header__content-right1{
+
+      /* text-align:bottom;
+      position: absolute;
+   padding-top: 1120px; */
+   font-size: 90%;
+  
+       }
+       .rev-text-1{
+        text-align:center;
+        font-size: 70%;
+        position: absolute;
+        padding-top:120px;
+      
+        line-height: 2em;
+      }
+  
+      .rev-text-2d{
+          text-align:center;
+          font-size: 50%;
+          position: absolute;
+          margin-left: 200px;
+        }
+        .rev-text-2b{
+          text-align: center;
+          font-size: 50%;
+          text-transform: uppercase; 
+          position: absolute;
+          margin-left: 200px;
+        }
+        .rev-text-2a{
+          text-align: center;
+          font-size: 50%;
+          text-transform: uppercase; 
+          
+        }
+        .rev-text-2c{
+          text-align: center;
+          font-size: 50%;
+          text-transform: uppercase; 
+          position: absolute;
+          margin-left: 200px;
+        }
+     
+        .rev-text-4b{
+          position: absolute;
+          text-align: center;
+          font-size: 100%;
+        }
+        .rev-text-4a{
+          position: absolute;
+          text-align: center;
+          font-size: 50%;
+         
+      
+        }
+  
+      .rev-text-5a{
+        position: absolute;
+        text-align: center;
+        font-size: 100%;
+      }
+      .rev-text-5b{
+        position: absolute;
+        text-align: center;
+        font-size: 100%;
+        text-transform: uppercase; 
+        letter-spacing:0.2em;  
+    
+      }
+    .rev-text-6a{
+      position: absolute;
+      text-align: bottom;
+      padding-bottom: 110px;
+      font-size: 100%; 
+      }
+     
+      .rev-text-6c{
+        position: absolute;
+        text-align: bottom;
+        font-size: 100%; 
+        padding-bottom: 0%;     
+      }
+      .rev-text-6d{
+        position: absolute;
+        text-align: right;
+        padding-bottom: 80px;
+        font-size: 100%; 
+        padding-right: 0px;
+      }
+  
+      .rev-text-6b{
+        position: absolute;
+        text-align: bottom;
+        padding-bottom: 80px;
+        font-size: 100%; 
+      }
+  
+      .rev-text-7a{
+        position: absolute;
+          text-align: center;
+          font-size: 80%;
+          text-transform: uppercase;
+        }
+        .rev-text-7b{
+          position: absolute;
+          text-align: center;
+          font-size: 80%; 
+        }
+        .rev-text-8a{
+          position: absolute;
+          text-align: center;
+          font-size: 80%;
+          padding-left:300px;
+        }
+        .rev-text-8b{
+          position: absolute;
+          text-align: center;
+          font-size: 80%;
+          text-transform: uppercase; 
+          padding-left: 300px;
+           
+        }
+        .rev-text-9a{
+        
+          text-align: center;
+          font-size: 60%;
+          padding-right: 0%;
+          line-height: 10px;
+          line-height: 30px;
+        }
+        .rev-text-9b{
+        position: absolute;
+          text-align: left;
+          font-size: 50%;
+          text-transform: uppercase; 
+          padding-bottom: 60px;
+        margin-left: 0%;
+        }
+
+
+  }
+    @media (max-width: 991px) {
+      .header__content-right1{
+
+        /* text-align:bottom;
+        position: absolute;
+     padding-top: 1120px; */
+     font-size: 90%;
+    
+         }
+         .rev-text-1{
+          text-align:center;
+          font-size: 70%;
+          position: absolute;
+          padding-top:120px;
+        
+          line-height: 2em;
+        }
+    
+        .rev-text-2d{
+            text-align:center;
+            font-size: 50%;
+            position: absolute;
+            margin-left: 200px;
+          }
+          .rev-text-2b{
+            text-align: center;
+            font-size: 50%;
+            text-transform: uppercase; 
+            position: absolute;
+            margin-left: 200px;
+          }
+          .rev-text-2a{
+            text-align: center;
+            font-size: 50%;
+            text-transform: uppercase; 
+            
+          }
+          .rev-text-2c{
+            text-align: center;
+            font-size: 50%;
+            text-transform: uppercase; 
+            position: absolute;
+            margin-left: 200px;
+          }
+       
+          .rev-text-4b{
+            position: absolute;
+            text-align: center;
+            font-size: 100%;
+          }
+          .rev-text-4a{
+            position: absolute;
+            text-align: center;
+            font-size: 50%;
+           
+        
+          }
+    
+        .rev-text-5a{
+          position: absolute;
+          text-align: center;
+          font-size: 100%;
+        }
+        .rev-text-5b{
+          position: absolute;
+          text-align: center;
+          font-size: 100%;
+          text-transform: uppercase; 
+          letter-spacing:0.2em;  
+      
+        }
+      .rev-text-6a{
+        position: absolute;
+        text-align: bottom;
+        padding-bottom: 110px;
+        font-size: 100%; 
+        }
+       
+        .rev-text-6c{
+          position: absolute;
+          text-align: bottom;
+          font-size: 100%; 
+          padding-bottom: 0%;     
+        }
+        .rev-text-6d{
+          position: absolute;
+          text-align: right;
+          padding-bottom: 80px;
+          font-size: 100%; 
+          padding-right: 0px;
+        }
+    
+        .rev-text-6b{
+          position: absolute;
+          text-align: bottom;
+          padding-bottom: 80px;
+          font-size: 100%; 
+        }
+    
+        .rev-text-7a{
+          position: absolute;
+            text-align: center;
+            font-size: 80%;
+            text-transform: uppercase;
+          }
+          .rev-text-7b{
+            position: absolute;
+            text-align: center;
+            font-size: 80%; 
+          }
+          .rev-text-8a{
+            position: absolute;
+            text-align: center;
+            font-size: 80%;
+            padding-left:300px;
+          }
+          .rev-text-8b{
+            position: absolute;
+            text-align: center;
+            font-size: 80%;
+            text-transform: uppercase; 
+            padding-left: 300px;
+             
+          }
+          .rev-text-9a{
+          
+            text-align: center;
+            font-size: 60%;
+            padding-right: 0%;
+            line-height: 10px;
+            line-height: 30px;
+          }
+          .rev-text-9b{
+          position: absolute;
+            text-align: left;
+            font-size: 50%;
+            text-transform: uppercase; 
+            padding-bottom: 60px;
+          margin-left: 0%;
+          }
+
+    }
+    @media (max-width: 575px) {
+      .header__content-right1{
+
+        /* text-align:bottom;
+        position: absolute;
+     padding-top: 1120px; */
+     font-size: 90%;
+    
+         }
+         .rev-text-1{
+          text-align:center;
+          font-size: 70%;
+          position: absolute;
+          padding-top:120px;
+        
+          line-height: 2em;
+        }
+    
+        .rev-text-2d{
+            text-align:center;
+            font-size: 50%;
+            position: absolute;
+            margin-left: 200px;
+          }
+          .rev-text-2b{
+            text-align: center;
+            font-size: 50%;
+            text-transform: uppercase; 
+            position: absolute;
+            margin-left: 200px;
+          }
+          .rev-text-2a{
+            text-align: center;
+            font-size: 50%;
+            text-transform: uppercase; 
+            
+          }
+          .rev-text-2c{
+            text-align: center;
+            font-size: 50%;
+            text-transform: uppercase; 
+            position: absolute;
+            margin-left: 200px;
+          }
+       
+          .rev-text-4b{
+            position: absolute;
+            text-align: center;
+            font-size: 100%;
+          }
+          .rev-text-4a{
+            position: absolute;
+            text-align: center;
+            font-size: 50%;
+           
+        
+          }
+    
+        .rev-text-5a{
+          position: absolute;
+          text-align: center;
+          font-size: 100%;
+        }
+        .rev-text-5b{
+          position: absolute;
+          text-align: center;
+          font-size: 100%;
+          text-transform: uppercase; 
+          letter-spacing:0.2em;  
+      
+        }
+      .rev-text-6a{
+        position: absolute;
+        text-align: bottom;
+        padding-bottom: 110px;
+        font-size: 100%; 
+        }
+       
+        .rev-text-6c{
+          position: absolute;
+          text-align: bottom;
+          font-size: 100%; 
+          padding-bottom: 0%;     
+        }
+        .rev-text-6d{
+          position: absolute;
+          text-align: right;
+          padding-bottom: 80px;
+          font-size: 100%; 
+          padding-right: 0px;
+        }
+    
+        .rev-text-6b{
+          position: absolute;
+          text-align: bottom;
+          padding-bottom: 80px;
+          font-size: 100%; 
+        }
+    
+        .rev-text-7a{
+          position: absolute;
+            text-align: center;
+            font-size: 80%;
+            text-transform: uppercase;
+          }
+          .rev-text-7b{
+            position: absolute;
+            text-align: center;
+            font-size: 80%; 
+          }
+          .rev-text-8a{
+            position: absolute;
+            text-align: center;
+            font-size: 80%;
+            padding-left:300px;
+          }
+          .rev-text-8b{
+            position: absolute;
+            text-align: center;
+            font-size: 80%;
+            text-transform: uppercase; 
+            padding-left: 300px;
+             
+          }
+          .rev-text-9a{
+          
+            text-align: center;
+            font-size: 60%;
+            padding-right: 0%;
+            line-height: 10px;
+            line-height: 30px;
+          }
+          .rev-text-9b{
+          position: absolute;
+            text-align: left;
+            font-size: 50%;
+            text-transform: uppercase; 
+            padding-bottom: 60px;
+          margin-left: 0%;
+          }
+
+    }
+      

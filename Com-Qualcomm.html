@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" >
+        <meta name="description" content="Simha Associates" >
+        <meta name="author" content="Simhas" >
+        <meta name="keywords" content="Simha simhas Architects Interior planning design Hyderabad Bangalore Delhi Mumbai Commercial Residential" >
+    
+        <!-- Title Page-->
+        <title>Qualcomm</title>
+    
+        <!-- Icons font CSS-->
+        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all" >
+        <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all" >
+        <link href="vendor/themify-font/themify-icons.css" rel="stylesheet" media="all">
+        <!-- Base fonts of theme-->
+        <link href="css/poppins-font.min.css" rel="stylesheet" media="all" >
+        <!-- Font special for pages-->
+    
+        <!-- Bootstrap CSS-->
+        <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all" >
+    
+        <!-- Vendor CSS-->
+        <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="all" >
+        <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all" >
+        <link href="vendor/animsition/animsition.min.css"  rel="stylesheet" media="all" >
+        <!-- <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all" >
+        <link href="vendor/revolution/css/layers.css" rel="stylesheet">
+        <link href="vendor/revolution/css/navigation.css" rel="stylesheet" >
+        <link href="vendor/revolution/css/settings.css" rel="stylesheet" > -->
+    
+        <!-- Main CSS-->
+        <link href="css/main.min.css" rel="stylesheet" media="all" >
+    
+        <!--Favicons-->
+        <link rel="shortcut icon" href="assets/Icons/header-icon.png" >
+        <link rel="apple-touch-icon" href="assets/Icons/header-icon.png" >
+        <link rel="apple-touch-icon" sizes="72x72" href="assets/Icons/header-icon.png" >
+        <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png" >
+        <style>
+            .zoomD {
+            width: 500px;
+            height: auto;
+            cursor: pointer;
+            margin: 10px;
+          }
+          
+          #lb-back {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all ease 0.4s;
+          }
+          #lb-back.show {
+            visibility: visible;
+            opacity: 1;
+            background-color: black;
+          }
+          
+          
+          #lb-img {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            margin-top: auto;
+            margin-left:300px;
+          margin-bottom:auto;
+          margin-right:300px;
+          background-color: black;
+          }
+          #lb-img img {
+           
+            width: 100%;
+            height: 100%;
+           
+          }
+          
+          html, body {
+            padding: 0;
+            margin: 0;
+          }
+          </style> 
+      </head>
+
+<body class="animsition js-preloader">
+    <div class="page-wrapper">
+        <!-- HEADER-->
+        <header id="header">
+            <div class="header header-1 d-none d-lg-block js-header-1">
+                <div class="header__bar">
+                    <div class="wrap wrap--w1790">
+                        <div class="container-fluid">
+                            <div class="header__content">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="assets/Simhablk.svg" alt="simhas" />
+                                    </a>
+                                </div>
+                                <div class="header__content-right">
+                                    <nav class="header-nav-menu">
+                                        <ul class="menu nav-menu">
+                                            <li class="menu-item">
+                                                <a href="index.html">Home</a>
+                                            </li>
+                                            
+                                            <li class="menu-item menu-item-has-children">
+                                                <a href="proj.html">Work</a>
+                                                <ul class="sub-menu">
+                                                    <li class="menu-item">
+                                                        <a href="commercial.html">Commercial</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a href="residential.html">Residential</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a href="interiors.html">Interiors</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="about-us.html">About</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="Client.html">Client</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="contact.html">Contact</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-mobile d-block d-lg-none">
+                <div class="header-mobile__bar">
+                    <div class="container-fluid">
+                        <div class="header-mobile__bar-inner">
+                            <a class="logo" href="index.html">
+                                <img src="assets/Simhablk.svg" alt="Simhas" />
+                            </a>
+                            <button class="hamburger hamburger--slider float-right" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="header-nav-menu-mobile">
+                    <div class="container-fluid">
+                        <ul class="menu nav-menu menu-mobile">
+                            <li class="menu-item">
+                                <a href="index.html">Home</a>
+                            </li>
+                        
+                            <li class="menu-item menu-item-has-children">
+                                <a href="proj.html">Work</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a href="commercial.html">Commercial</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="residential.html">Residential</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="interiors.html">Interiors</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a href="about-us.html">About</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="Client.html">Client</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- END HEADER-->
+
+        <!-- MAIN-->
+        <main id="main">
+            <div class="container">
+                <article class="project-style-4">
+                    <header class="entry-header">
+                        <h2>Qualcomm</h2><br>
+                        <h2 style=" font-family:poppins; font-size: 15px;font-weight: normal;">Location :  Hyderabad</h3>
+                       <h2 style=" font-family:poppins; font-size: 15px;font-weight: normal;">Status : Proposal</h3>
+                       <h2 style=" font-family:poppins; font-size: 15px;font-weight: normal;">Area : 45 Lac SFT</h3>
+                        <pre><h3 style=" font-family:poppins; font-size: 12px;font-weight: normal;">                      (BUA 30 Lac SFT+ Parking 15 Lac SFT)</h5>  </pre>
+                        </header>
+                    </header>
+                    <div id="lb-back">
+                    <div id="lb-img"></div>
+                   </div>
+                   
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-5.jpg">
+                     <div id="lb-back">
+                       <div id="lb-img"></div>
+                      </div>
+                   
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-4.jpg">
+
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-11.jpg">
+
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-6.jpg">
+
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-1.jpg">
+
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-12.jpg">
+
+                     <img class="zoomD" src="assets/Work/Commercial/Qualcomm/Qualcomm-3.jpg">
+                           
+                          
+                        </div>
+                    </div>
+                    <script>
+                        var zoomImg = function () {
+                            // (A) CREATE EVIL IMAGE CLONE
+                            var clone = this.cloneNode();
+                            clone.classList.remove("zoomD");
+                          
+                            // (B) PUT EVIL CLONE INTO LIGHTBOX
+                            var lb = document.getElementById("lb-img");
+                            lb.innerHTML = "";
+                            lb.appendChild(clone);
+                          
+                            // (C) SHOW LIGHTBOX
+                            lb = document.getElementById("lb-back");
+                            lb.classList.add("show");
+                          };
+                          
+                          window.addEventListener("load", function(){
+                            // (D) ATTACH ON CLICK EVENTS TO ALL .ZOOMD IMAGES
+                            var images = document.getElementsByClassName("zoomD");
+                            if (images.length>0) {
+                              for (var img of images) {
+                                img.addEventListener("click", zoomImg);
+                              }
+                            }
+                          
+                            // (E) CLICK EVENT TO HIDE THE LIGHTBOX
+                            document.getElementById("lb-back").addEventListener("click", function(){
+                              this.classList.remove("show");
+                            })
+                          });
+    </script>
+                    <!-- <div class="row m-t-20">
+                        <div class="col-lg-12">
+                            <div class="entry-meta">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="entry-meta__item">
+                                            <h4 class="key">Year:</h4>
+                                            <span class="value">2017</span>
+                                        </div>
+                                        <div class="entry-meta__item">
+                                            <h4 class="key">status:</h4>
+                                            <span class="value">Completed</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="entry-meta__item">
+                                            <h4 class="key">location:</h4>
+                                            <span class="value">Bangalore</span>
+                                        </div>
+                                        <div class="entry-meta__item">
+                                            <h4 class="key">area:</h4>
+                                            <span class="value">1.5L Sq. Ft</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-lg-7">
+                            <div class="entry-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                                <p>
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam remaperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
+                                    sit
+                                </p>
+                            </div> -->
+                            <!-- <div class="entry-share">
+                                <span class="key">Share :</span>
+                                <ul class="list-social list-social--md">
+                                    <li class="list-social__item">
+                                        <a class="ic-fb" href="#">
+                                            <i class="zmdi zmdi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-social__item">
+                                        <a class="ic-insta" href="#">
+                                            <i class="zmdi zmdi-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-social__item">
+                                        <a class="ic-twi" href="#">
+                                            <i class="zmdi zmdi-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-social__item">
+                                        <a class="ic-pinterest" href="#">
+                                            <i class="zmdi zmdi-pinterest"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-social__item">
+                                        <a class="ic-google" href="#">
+                                            <i class="zmdi zmdi-google"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+        </main>
+        <!-- END MAIN-->
+
+        <!-- FOOTER-->
+       
+        <!-- END FOOTER-->
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+    <!-- Vendor JS-->
+    <script src="vendor/animsition/animsition.min.js"></script>
+    
+    <script src="vendor/isotope/isotope.pkgd.min.js"></script>
+    
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->
