@@ -489,16 +489,23 @@
 
     try {
 
-                // Get the current page URL
-                var currentPage = window.location.pathname;
-                // List of pages where the script should not execute
-                var excludedPages = ['/interiors.html', '/commercial.html', '/residential.html'];
-        
-                // Check if the current page is in the excluded list
-                if (excludedPages.includes(currentPage)) {
-                    console.log('Isotope initialization skipped on this page: ' + currentPage);
-                    return; // Exit the script if on an excluded page
-                }
+              // Get the current page URL and normalize it
+var currentPage = window.location.pathname.replace(/\/$/, ''); // Remove trailing slash if present
+
+// List of pages where the script should not execute
+var excludedPages = ['/interiors.html', '/commercial.html', '/residential.html'];
+
+// Normalize the excluded pages
+excludedPages = excludedPages.map(page => page.replace(/\/$/, ''));
+
+// Check if the current page is in the excluded list
+if (excludedPages.includes(currentPage)) {
+    console.log('Isotope initialization skipped on this page: ' + currentPage);
+    return; // Exit the script if on an excluded page
+}
+
+// Your script execution here
+
 
         var $isotopeWrapper = $('.js-isotope-wrapper');
 
