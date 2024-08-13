@@ -127,7 +127,7 @@ async function loadProjectsByCategory(categoryId) {
                             $iso.isotope('layout');
                         })
         
-                    }, 500); 
+                    }, 1000); 
                     isotopeFilter.on('click', 'li span', function () {
                         isotopeContent.isotope({filter: $(this).attr('data-filter')});
                     });
