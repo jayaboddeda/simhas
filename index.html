@@ -18,10 +18,10 @@
         <!-- Base fonts of theme-->
         <link href="css/poppins-font.min.css" rel="stylesheet" media="all" >
         <!-- Font special for pages-->
-    
+
         <!-- Bootstrap CSS-->
         <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all" >
-    
+
         <!-- Vendor CSS-->
         <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="all" >
         <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all" >
@@ -31,36 +31,36 @@
         <link href="vendor/revolution/css/layers.css" rel="stylesheet">
         <link href="vendor/revolution/css/navigation.css" rel="stylesheet" >
         <link href="vendor/revolution/css/settings.css" rel="stylesheet" >
-    
+
         <!-- Main CSS-->
         <link href="css/main.min.css" rel="stylesheet" media="all">
         <link href="css/text.css" rel="stylesheet" media="all">
-    
+
         <!--Favicons-->
         <link rel="shortcut icon" href="assets/Icons/header-icon.png" >
         <link rel="apple-touch-icon" href="assets/Icons/header-icon.png" >
         <link rel="apple-touch-icon" sizes="72x72" href="assets/Icons/header-icon.png" >
         <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png" >
-        
+
 
 <style>
   .ic-fb {
   animation: text 10s ease-out infinite;
   animation-delay: 2s;
-  
+
   }
-  
+
   @keyframes text{
   0%{ transform: scale(1);}
   25%{ transform: scale(1.5); color: rgb(233, 227, 166);}
   60%{ transform: scale(1);}
   100%{ transform: scale(1);}
-  
+
   }
       .ic-fb2 {
     animation: text 10s ease-out  infinite;
     animation-delay: 4s;
-    
+
     }
     @keyframes text2{
     0%{ transform: scale(0.9);}
@@ -77,9 +77,9 @@
     25%{ transform: scale(1.5);}
     60%{ transform: scale(1);}
     100%{ transform: scale(1);}
-        
+
     }
-  
+
       .ic-fb4 {
       animation: text 10s ease-out  infinite;
       animation-delay: 8s;
@@ -89,12 +89,64 @@
       25%{ transform: scale(1.5);}
       60%{ transform: scale(1);}
       100%{ transform: scale(1);}
-      
+
       }
-  
+
     .header__content-right{
       color: honeydew;
     }
+    /* .logo-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.logo-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
+
+
+.logo-container {
+  position: relative;
+  width: 250px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.logo-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.logo-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.logo-slide.prev {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+
+
      </style>
   </head>
   <body class="animsition js-preloader">
@@ -108,24 +160,43 @@
       <!-- MAIN-->
       <main id="main" >
         <header id="header">
-          <div class="header header-2 header-page-pilling d-none d-lg-block">
+          <div class="header header-2 header-page-pilling d-none d-lg-block p-0">
               <div class="header__bar">
                   <div class="wrap wrap--w1790">
                       <div class="container-fluid">
                           <div class="header__content">
-                              <div class="logo">
+                              <!-- <div class="logo"> -->
                                  <!-- <a href="#"> -->
-                                  <!-- <img src="assets/Simhas-blkblk.svg" alt="Simha Associates"  /> -->
+                                  <!-- <img src="assets/30years.jpeg" width="200" height="200" alt="Simha Associates"  />
                                   <a href="proj.html" >
-                                  <p style="color: whitesmoke; font-size: 22px; letter-spacing: 0.05em; line-height: 14px;"  ><i> SIMHAS </i> </p> 
+                                  <p style="color: whitesmoke; font-size: 22px; letter-spacing: 0.05em; line-height: 14px;"  ><i> SIMHAS </i> </p>
                                   <p style="color: whitesmoke;"> Since <b style="font-size: 16px;letter-spacing: 0.1em; font-family: Arial;" href="proj.html">1992</b></p>
-                                      </a>
+                                      </a> -->
                                       <!-- <h4 style="color: whitesmoke;font-weight: 200;font-style: italic;">SIMHAS</h4> -->
                                   <!-- </a> -->
+                              <!-- </div> -->
+                              <div class="logo-container">
+                                <div class="logo-content">
+                                  <div class="logo-slide pl-5">
+                                    <img src="assets/30years.png" width="300" height="200" alt="Simha Associates" />
+                                  </div>
+                                  <div class="logo-slide p-5">
+                                    <a href="proj.html">
+                                      <p style="color: whitesmoke; font-size: 22px; letter-spacing: 0.05em; line-height: 14px;">
+                                        <i> SIMHAS </i>
+                                      </p>
+                                      <p style="color: whitesmoke;">
+                                        Since <b style="font-size: 16px; letter-spacing: 0.1em; font-family: Arial;" href="proj.html">1992</b>
+                                      </p>
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="header__content-right1">
+
+
+                              <div class="header__content-right1 p-5">
                                 <a href="mailto:office@simhas.com"> <p style="color: whitesmoke;  line-height: 14px;" > &#9993;  office@simhas.com  </p></a> <br>
-                                <a href="tel:919985090900"><p style="color: whitesmoke;">  &#9742;  9985090900 </p></a>     
+                                <a href="tel:919985090900"><p style="color: whitesmoke;">  &#9742;  9985090900 </p></a>
                               </div>
                      </div>
                       </div>
@@ -138,20 +209,20 @@
                   <div class="logo">
 
                     <a href="proj.html" >
-                      <p style="color: whitesmoke; font-size: 22px; letter-spacing: 0.05em; line-height: 14px;"  ><i> SIMHAS </i> </p> 
+                      <p style="color: whitesmoke; font-size: 22px; letter-spacing: 0.05em; line-height: 14px;"  ><i> SIMHAS </i> </p>
                       <p style="color: whitesmoke;"> Since <b style="font-size: 16px;letter-spacing: 0.1em; font-family: Arial;" href="proj.html">1992</b></p>
                           </a>
                   </div>
                   <div class="header__content-right1">
                     <a href="mailto:office@simhas.com"><p style="color: whitesmoke;  line-height: 14px;">&#9993;  office@simhas.com  </p></a> <br>
-                    <a href="tel:919985090900"><p style="color: whitesmoke;">           &#9742;  9985090900    </p></a> 
+                    <a href="tel:919985090900"><p style="color: whitesmoke;">           &#9742;  9985090900    </p></a>
                               </div>
                   <!-- </div> -->
               </div>
           </div>
-               
+
         </div>
-    
+
       </header>
         <!-- SLIDER-->
         <body>
@@ -173,7 +244,7 @@
                         ABOUT
                       </a>
                     </li>
-                    
+
                     <li class="list-social__item">
                       <a class="ic-fb3" href="Client.html" style="font-weight: 600; text-align: right; letter-spacing: 0.2em">
                         <!-- <i class="zmdi zmdi-twitter"></i> -->
@@ -197,11 +268,11 @@
           <a href="proj.html">
           <div class="container">
             <div class="section">
-              
+
             <div >
-              
+
               <div class="rev_slider_wrapper">
-               
+
                 <div
                   class="rev_slider fullwidthabanner js-rev"
                   data-version="5.4.4"
@@ -212,17 +283,17 @@
                   data-rev-stylebullet="au-rev-bullet-1"
                   data-rev-variable="true"
                   data-rev-voffbullet="62"
-                  data-rev-spacebullet="365"   
+                  data-rev-spacebullet="365"
                 >
                   <ul>
-                    
+
                     <li
                       class="rev-item rev-item-1"
                       data-transition="crossfade"
                       data-param1="01"
                       data-delay='2300'
                     >
-                 
+
                       <img
                         class="rev-slidebg"
                         src="assets/bg1.jpg"
@@ -239,8 +310,8 @@
                         data-offsetend="0 0"
                         href="proj.html"
                       />
-                 
-              
+
+
                       <h4
                         class="tp-caption tp-resizeme rev-text-1 "
                         data-frames='[{"delay":1000,"speed":900,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":800,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'
@@ -260,7 +331,7 @@
                       >
                        Architecture, Planning <br> and Interior design.
                       </h4>
-                 
+
                     <img
                         src="./assets/Simha.svg"
                         class="tp-caption tp-resizeme rev-text-2"
@@ -300,7 +371,7 @@
                         data-basealign="slide"
                       >
                   </img>
-             
+
                   <!-- 2nd slide start -->
 
                     </li>
@@ -311,7 +382,7 @@
                     data-delay='1800'
 
                   >
-              
+
                     <img
                       class="rev-slidebg"
                       src="assets/bg6.jpg"
@@ -327,13 +398,13 @@
                       data-rotateend="1"
                       data-offsetstart="0 0"
                       data-offsetend="0 0"
-                      
+
                     />
-                 
+
                     <h4
                       class="tp-caption tp-resizeme rev-text-2a"
                       data-frames='[{"delay":300,"speed":900,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power2.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
-                      data-x="['900px']" 
+                      data-x="['900px']"
                       data-y="['middle']"
                       data-hoffset="[0, 0, 0, 0, 0]"
                       data-voffset="[62, 62, 60, 60, 60]"
@@ -393,7 +464,7 @@
                     >
                     KOLKATA - AHMEDABAD
                   </h4>
-                  
+
                   <!-- Mobile title -->
                    <h4
                       class="tp-caption tp-resizeme rev-text-2a"
@@ -414,8 +485,8 @@
                       data-textalign="[center]"
                       data-visibility="['off','off','on','on']"
                     >
-                    HYDERABAD - BANGALORE 
-                  </h4> 
+                    HYDERABAD - BANGALORE
+                  </h4>
                   <!-- Mobile title -->
 
                     <h2
@@ -451,7 +522,7 @@
                     data-delay='1800'
 
                   >
-                 
+
                     <img
                       class="rev-slidebg"
                       src="assets/bg3.jpg"
@@ -467,8 +538,8 @@
                       data-offsetstart="0 0"
                       data-offsetend="0 0"
                     />
-                 
-                <img  
+
+                <img
                 src="./assets/temple-2.png"
                 class="tp-caption tp-resizeme"
                 data-frames='[{"delay":800,"speed":900,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -483,7 +554,7 @@
                 data-whitespace="[nowrap, nowrap, nowrap, normal, normal]"
                 data-basealign="slide"
                 />
-                <img  
+                <img
                 src="./assets/temple-3.png"
                 class="tp-caption tp-resizeme"
                 data-frames='[{"delay":1000,"speed":900,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -550,7 +621,7 @@
                   data-param1="04"
                   data-delay='2000'
                 >
-            
+
                   <img
                     class="rev-slidebg"
                     src="assets/bg2.jpg"
@@ -566,7 +637,7 @@
                     data-offsetstart="0 0"
                     data-offsetend="0 0"
                   />
-               
+
                   <h2
                   class="tp-caption tp-resizeme rev-text-4a"
                   data-frames='[{"delay":1000,"speed":900,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power2.out"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -584,7 +655,7 @@
                   data-fontsize="[28, 28, 30, 30, 30]"
                   data-textalign="[center]"
                   data-visibility="['on','on','on','on']"
-                  
+
                 >
                 HighEnd Commercial TECH PARKS
               </h2>
@@ -607,7 +678,7 @@
                     data-fontsize="[48, 48, 40, 40, 40]"
                     data-textalign="[center, center, center, left, left]"
                     data-basealign="slide"
-                    
+
                   >
                     We Specialise in
                   </h3>
@@ -621,7 +692,7 @@
                   data-param1="04"
                   data-delay='2000'
                 >
-             
+
                   <img
                     class="rev-slidebg"
                     src="assets/bg4.jpg"
@@ -636,8 +707,8 @@
                     data-rotateend="1"
                     data-offsetstart="0 0"
                     data-offsetend="0 0"
-                  /> 
-               
+                  />
+
                   <h3
                   class="tp-caption tp-resizeme rev-text-5a"
                   data-frames='[{"delay":600,"speed":900,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut,"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -656,7 +727,7 @@
                   data-fontsize="[48, 48, 40, 40, 40]"
                   data-textalign="[center, center, center, left, left]"
                   data-basealign="slide"
-                  
+
                 >
                   We Expertise in
                 </h3>
@@ -677,13 +748,13 @@
                   data-fontsize="[30, 30, 32, 32, 32]"
                   data-textalign="[center]"
                   data-visibility="['on','on','on','on']"
-                  
+
                 >
                 CORPORATE OFFICES INTERIORS
               </h2>
-              
+
              <!-- 5th slide end -->
-          
+
              <!-- 6th slide start -->
 
              <li
@@ -692,7 +763,7 @@
                   data-param1="04"
                   data-delay='2000'
                 >
-              
+
                   <img
                     class="rev-slidebg"
                     src="assets/bg9A.jpg"
@@ -707,8 +778,8 @@
                     data-rotateend="1"
                     data-offsetstart="0 0"
                     data-offsetend="0 0"
-                  /> 
-               
+                  />
+
                   <h3
                   class="tp-caption tp-resizeme rev-text-6a"
                   data-frames='[{"delay":600,"speed":900,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut,"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -728,7 +799,7 @@
                   data-fontsize="[38, 38, 36, 36, 36]"
                   data-textalign="[center, center, center, left, left]"
                   data-basealign="slide"
-                  
+
                 >
                   End to End Solutions
                 </h3>
@@ -750,9 +821,9 @@
                   data-fontsize="[42, 42, 40, 40, 40]"
                   data-textalign="[center]"
                   data-visibility="['on','on','on','on']"
-                  
+
                 >
-               MALLS  
+               MALLS
               </h2>
 
               <h2
@@ -773,9 +844,9 @@
                   data-fontsize="[42, 42, 40, 40, 40]"
                   data-textalign="[center]"
                   data-visibility="['on','on','on','on']"
-                  
+
                 >
-               &  
+               &
               </h2>
 
               <h2
@@ -796,9 +867,9 @@
                   data-fontsize="[42, 42, 40, 40, 40]"
                   data-textalign="[center]"
                   data-visibility="['on','on','on','on']"
-                 
+
                 >
-                  MULTIPLEXES 
+                  MULTIPLEXES
               </h2>
               <!-- 6th slide end -->
 
@@ -809,7 +880,7 @@
                   data-param1="04"
                   data-delay='2000'
                 >
-             
+
                   <img
                     class="rev-slidebg"
                     src="assets/bg7.jpg"
@@ -825,7 +896,7 @@
                     data-offsetstart="0 0"
                     data-offsetend="0 0"
                   />
-               
+
                   <h2
                   class="tp-caption tp-resizeme rev-text-7a"
                   data-frames='[{"delay":1000,"speed":900,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power2.out"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -843,11 +914,11 @@
                   data-fontsize="[48, 48, 40, 40, 40]"
                   data-textalign="[center]"
                   data-visibility="['on','on','on','on']"
-                  
+
                 >
                 RESIDENTIAL - LANDSCAPE
               </h2>
-             
+
               <h3
               class="tp-caption tp-resizeme rev-text-7b"
               data-frames='[{"delay":600,"speed":900,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut,"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -866,7 +937,7 @@
               data-fontsize="[30, 30, 32, 32, 32]"
               data-textalign="[center, center, center, left, left]"
               data-basealign="slide"
-              
+
             >
               We handle Large Scale
             </h3>
@@ -881,7 +952,7 @@
             data-param1="04"
             data-delay='2000'
           >
-         
+
             <img
               class="rev-slidebg"
               src="assets/Frame 3.jpg"
@@ -897,7 +968,7 @@
               data-offsetstart="0 0"
               data-offsetend="0 0"
             />
-        
+
             <h2
             class="tp-caption tp-resizeme rev-text-8a"
             data-frames='[{"delay":1000,"speed":900,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power2.out"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -916,11 +987,11 @@
             data-fontsize="[28, 28, 30, 30, 30]"
             data-textalign="[center]"
             data-visibility="['on','on','on','on']"
-            
+
           >
           With MEP and Structural
         </h2>
-       
+
         <h3
         class="tp-caption tp-resizeme rev-text-8b"
         data-frames='[{"delay":600,"speed":900,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut,"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -940,7 +1011,7 @@
         data-fontsize="[48, 48, 40, 40, 40]"
         data-textalign="[center, center, center, left, left]"
         data-basealign="slide"
-        
+
       >
         LARGE IT OFFICES
       </h3>
@@ -952,7 +1023,7 @@
             data-param1="04"
             data-delay='2000'
           >
-        
+
             <img
               class="rev-slidebg"
               src="assets/bg5A.jpg"
@@ -968,7 +1039,7 @@
               data-offsetstart="0 0"
               data-offsetend="0 0"
             />
-         
+
             <br>
             <h2
             class="tp-caption tp-resizeme rev-text-9a"
@@ -979,7 +1050,7 @@
             data-voffset="[60]"
             data-paddingleft="[0, 0, 0, 0, 15]"
             data-paddingright="[0, 0, 0, 0, 15]"
-           
+
             data-width="['auto']"
             data-height='["auto"]'
             data-whitespace="[nowrap, nowrap, nowrap, nowrap, nowrap]"
@@ -988,11 +1059,11 @@
             data-fontsize="[26, 26, 28, 28, 28]"
             data-textalign="[center]"
             data-visibility="['on','on','on','on']"
-            
+
           >
           Expert Vastu and Architectural<br> Planning Solutions
         </h2>
-        
+
                   <h3
                     class="tp-caption tp-resizeme rev-text-9b"
                     data-frames='[{"delay":600,"speed":900,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut,"},{"delay":"wait","speed":800,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -1012,28 +1083,28 @@
                     data-fontsize="[46, 46, 40, 40, 40]"
                     data-textalign="[center, center, center, left, left]"
                     data-basealign="slide"
-                    
+
                   >
                   Campuses and Master Plans
-                </h3>                
+                </h3>
                   <!-- 9th slide end -->
 
 
                 </li>
-             
+
                   </ul>
-               
+
                 </div>
               </div>
             </div>
-          
+
             </div>
           </div>
         </a>
         </section>
         <!-- END SLIDER-->
         <!-- <section style="height: 100vh;">
-          
+
         </section> -->
       </main>
       <!-- END MAIN-->
@@ -1042,9 +1113,9 @@
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap JS-->
-    
+
     <script src="vendor/animsition/animsition.min.js"></script>
-   
+
     <script
       type="text/javascript"
       src="vendor/revolution/js/jquery.themepunch.tools.min.js"
@@ -1057,12 +1128,12 @@
     | (Load Extensions only on Local File Systems !
     | The following part can be removed on Server for On Demand Loading)
     -->
-    
+
     <script
       type="text/javascript"
       src="vendor/revolution/js/extensions/revolution.extension.slideanims.min.js"
     ></script>
-   
+
     <script
       type="text/javascript"
       src="vendor/revolution/js/extensions/revolution.extension.layeranimation.min.js"
@@ -1071,12 +1142,43 @@
       type="text/javascript"
       src="vendor/revolution/js/extensions/revolution.extension.kenburn.min.js"
     ></script>
-    
+
     <!-- Config Revolution Slider-->
     <script type="text/javascript" src="js/config-revolution.min.js"></script>
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.logo-slide');
+
+  function showNextSlide() {
+    // Hide current slide by moving it left
+    slides[currentSlide].classList.remove('active');
+    slides[currentSlide].classList.add('prev');
+
+    // Calculate next slide index
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // Show next slide by moving it in from the right
+    slides[currentSlide].classList.remove('prev');
+    slides[currentSlide].classList.add('active');
+  }
+
+  // Initialize by showing the first slide
+  slides[currentSlide].classList.add('active');
+
+  // Delay the start of the slide show by 10 seconds (10000 milliseconds)
+  // setTimeout(function() {
+    // Set an interval to automatically switch slides
+    setInterval(showNextSlide, 3000); // Change every 2.3 seconds after the initial delay
+  // }, 3000); // 10000 milliseconds = 10 seconds
+});
+
+
+
+    </script>
   </body>
 </html>
 <!-- end document-->
