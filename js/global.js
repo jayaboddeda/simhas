@@ -493,7 +493,7 @@
 var currentPage = window.location.pathname.replace(/\/$/, ''); // Remove trailing slash if present
 
 // List of pages where the script should not execute
-var excludedPages = ['/interiors.html', '/commercial.html', '/residential.html'];
+var excludedPages = ['/simhas/interiors.html', '/simhas/commercial.html', '/simhas/residential.html'];
 
 // Normalize the excluded pages
 excludedPages = excludedPages.map(page => page.replace(/\/$/, ''));
