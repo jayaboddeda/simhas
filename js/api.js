@@ -142,29 +142,30 @@ async function loadProjectsByCategory(categoryId) {
 
         projectData.data.forEach(project => {
             const projectHTML = `
-                <div class="col-lg-6 col-md-6 masonry-item">
-                 <a href="projectdetails.html?id=${project.id}">
+                <div class="col-lg-4 col-md-6 masonry-item">
                     <div class="img-container">
+                 <a class="w-100 h-100" href="projectdetails.html?id=${project.id}">
+
                         <img src="${ASSET_URL}/${project.main_image}" alt="${project.name}" class="img-fluid">
                         <div class="img-overlay">
                             <h3>${project.name}</h3>
                             <p>${project.location} / ${project.status}</p>
                         </div>
-                    </div>
                     </a>
+                    </div>
                 </div>
             `;
             projectContainer.insertAdjacentHTML('beforeend', projectHTML);    
         });
 
         // Use imagesLoaded to ensure all images are loaded before initializing Masonry
-        imagesLoaded(projectContainer, function() {
-            const masonryGrid = document.querySelector('.masonry-grid');
-            new Masonry(masonryGrid, {
-                itemSelector: '.masonry-item',
-                percentPosition: true,
-            });
-        });
+        // imagesLoaded(projectContainer, function() {
+        //     const masonryGrid = document.querySelector('.masonry-grid');
+        //     new Masonry(masonryGrid, {
+        //         itemSelector: '.masonry-item',
+        //         percentPosition: true,
+        //     });
+        // });
 
     } else {
         console.error(`No project data found for category ID: ${categoryId}.`);
