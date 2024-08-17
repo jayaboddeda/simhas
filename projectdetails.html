@@ -228,41 +228,45 @@
         <!-- MAIN-->
         <main id="main">
             <div class="container-fluid">
-                <section style="padding: 50px 0;" class="m-5">
-                    <div style="display: flex; flex-wrap: wrap;">
-                        <!-- Left Column -->
-                        <div style="flex: 1; min-width: 60%; max-width: 60%; padding-right: 20px; box-sizing: border-box;">
-                            <h1 style="font-family: 'Poppins', sans-serif; font-size: 48px; letter-spacing: 4px;" id="project-name">SCAFFOLD HOUSE</h1>
-                            <div style="font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: normal; margin-top: 20px;">
-                                <div style="display: flex; margin-bottom: 10px;">
-                                    <div style="min-width: 120px; font-weight: bold;">Location:</div>
-                                    <div id="project-location">Bangalore, Karnataka, India</div>
-                                </div>
-                                <div style="display: flex; margin-bottom: 10px;">
-                                    <div style="min-width: 120px; font-weight: bold;">Status:</div>
-                                    <div id="project-type">Residential</div>
-                                </div>
-                                <div style="display: flex; margin-bottom: 10px;">
-                                    <div style="min-width: 120px; font-weight: bold;">Area:</div>
-                                    <div id="project-area">4600 sqft</div>
-                                </div>
+                <section  class="m-3 m-md-5">
+                    <div>
+                        <div class="row">
+                            <!-- Right Column (Image) -->
+                            <div class="col-md-5 order-1 order-md-2 p-0 p-md-5 mb-3 mb-md-0" >
+                                <img src="" id="mainimage" alt="Scaffold House" class="img-fluid">
                             </div>
-                            <p id="project-description" style="font-family: 'Poppins', sans-serif; font-size: 15px; line-height: 1.6; margin-top: 20px;">
-                                The Scaffold House is a low-cost renovation project based in Bangalore, in which the original load-bearing building had three apartments and has been converted into two duplex houses. The original building was built on a square 60’x60’ corner site by the clients, as a retirement home. It contained their three-bedroom home on the first floor, along with two rental units (one two-bedroom apartment and a single-bedroom apartment) on the ground floor. The format of the house came into question once their son moved to Bangalore. A reconsolidation of the house was needed.<br><br>
-                                The idea of the Scaffold house stems from a pragmatic approach towards renovation, clarifying the understanding of the 'new' in context to the 'old'.<br><br>
-                                Structure, site, and budget concerns needed a bold intervention which changed the project from a finicky renovation to one of a motivated architectural intervention in that of making a family house.<br><br>
-                                A square of 20’x20’ in the center of the building was broken down carefully becoming the central core for this intervention. This space became the volume catalyzing the restructuring process.<br><br>
-                                Since the periphery of the building had most of the existing functions, they were mainly retained with very limited intervention.<br><br>
-                                A lightweight steel 'scaffold' of 2"x2" mild steel box sections was erected in this central core space as it became the language of the new as negotiated with the old. This framework also acted as a structural tie for the existing structure, as it held it in place. The interiors were slowly and carefully reconfigured to enable this transformation.
-                            </p>
+                            <!-- Left Column (Text) -->
+                            <div class="col-md-7 order-2 order-md-1 mb-4 p-0">
+                                <h1 class="font-weight-bold" id="project-name">SCAFFOLD HOUSE</h1>
+                                <div class="mt-4">
+                                    <div class="d-flex mb-3">
+                                        <div class="font-weight-bold" style="min-width: 120px;">Location:</div>
+                                        <div id="project-location">Bangalore, Karnataka, India</div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="font-weight-bold" style="min-width: 120px;">Status:</div>
+                                        <div id="project-type">Residential</div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="font-weight-bold" style="min-width: 120px;">Area:</div>
+                                        <div id="project-area">4600 sqft</div>
+                                    </div>
+                                </div>
+                                <p id="project-description" class="mt-4">
+                                    The Scaffold House is a low-cost renovation project based in Bangalore, in which the original load-bearing building had three apartments and has been converted into two duplex houses. The original building was built on a square 60’x60’ corner site by the clients, as a retirement home. It contained their three-bedroom home on the first floor, along with two rental units (one two-bedroom apartment and a single-bedroom apartment) on the ground floor. The format of the house came into question once their son moved to Bangalore. A reconsolidation of the house was needed.<br><br>
+                                    The idea of the Scaffold house stems from a pragmatic approach towards renovation, clarifying the understanding of the 'new' in context to the 'old'.<br><br>
+                                    Structure, site, and budget concerns needed a bold intervention which changed the project from a finicky renovation to one of a motivated architectural intervention in that of making a family house.<br><br>
+                                    A square of 20’x20’ in the center of the building was broken down carefully becoming the central core for this intervention. This space became the volume catalyzing the restructuring process.<br><br>
+                                    Since the periphery of the building had most of the existing functions, they were mainly retained with very limited intervention.<br><br>
+                                    A lightweight steel 'scaffold' of 2"x2" mild steel box sections was erected in this central core space as it became the language of the new as negotiated with the old. This framework also acted as a structural tie for the existing structure, as it held it in place. The interiors were slowly and carefully reconfigured to enable this transformation.
+                                </p>
+                            </div>
                         </div>
-                        <!-- Right Column -->
-                        <div style="flex: 1; min-width: 40%; max-width: 40%; box-sizing: border-box;">
-                            <img src="" id="mainimage" alt="Scaffold House" style="width: 100%; height: auto;">
-                        </div>
+                        
                     </div>
+                    
                 </section>
-                <div class="projectdetails-images image-grid text-center m-5">
+                <div class="projectdetails-images image-grid text-center m-md-5">
                     <div id="lb-back">
                         <div id="lb-img"></div>
                         <button id="lb-close">&times;</button>
@@ -279,7 +283,7 @@
 <footer style="background-color: white; padding: 20px 0;" id="projectdetails_footer" >
     <div class="row align-items-center justify-content-center">
         <div class="text-center mb-0 pr-4">
-            <p class="mb-0" style="font-family: 'Poppins', sans-serif; font-size: 18px; margin: 0;">
+            <p class="mb-0" >
                 Copyright © 2024 Simha Associates. All rights reserved.
             </p>
         </div>
