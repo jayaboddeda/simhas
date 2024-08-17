@@ -138,30 +138,74 @@ async function loadProjectsByCategory(categoryId) {
     const projectData = await getprojects(categoryId);
 
     if (projectData && projectData.data && projectData.data.length > 0) {
-        const projectContainer = document.querySelector(".isotope-content");
+        const projectContainer = document.querySelector(".masonry-grid");
 
         projectData.data.forEach(project => {
             const projectHTML = `
-                <div class="col-md-6 col-lg-6 isotope-item">
-                    <article class="media-project-2 m-b-30">
-                        <figure class="media__img">
-                            <img src="${ASSET_URL}/${project.main_image}" alt="${project.name}" />
-                        </figure>
-                        <div class="media__body" style="position: absolute; bottom: 0px; padding-bottom: 0px;">
-                            <h3 class="media__title">
-                                <a href="projectdetails.html?id=${project.id}">${project.name}</a>
-                            </h3>
-                            <span class="address">${project.location} / ${project.status}</span>
+                <div class="col-lg-6 col-md-6 masonry-item">
+                 <a href="projectdetails.html?id=${project.id}">
+                    <div class="img-container">
+                        <img src="${ASSET_URL}/${project.main_image}" alt="${project.name}" class="img-fluid">
+                        <div class="img-overlay">
+                            <h3>${project.name}</h3>
+                            <p>${project.location} / ${project.status}</p>
                         </div>
-                    </article>
+                    </div>
+                    </a>
                 </div>
             `;
-            projectContainer.innerHTML += projectHTML;
+            projectContainer.insertAdjacentHTML('beforeend', projectHTML);    
         });
 
-        // Ensure DOM update before initializing or re-initializing Isotope
-        await initializeIsotope();
+        // Use imagesLoaded to ensure all images are loaded before initializing Masonry
+        imagesLoaded(projectContainer, function() {
+            const masonryGrid = document.querySelector('.masonry-grid');
+            new Masonry(masonryGrid, {
+                itemSelector: '.masonry-item',
+                percentPosition: true,
+            });
+        });
+
     } else {
         console.error(`No project data found for category ID: ${categoryId}.`);
     }
 }
+
+
+
+
+    // async function loadProjectsByCategory(categoryId) {
+    //     const projectData = await getprojects(categoryId);
+
+    //     if (projectData && projectData.data && projectData.data.length > 0) {
+    //         const projectContainer = document.querySelector(".masonry-grid");
+
+    //         projectData.data.forEach(project => {
+    //             const projectHTML = `
+    //                 <div class="col-lg-4 col-md-6 col-sm-12 masonry-item">
+    //                     <a href="projectdetails.html?id=${project.id}">
+    //                         <div class="img-container">
+    //                             <img src="${ASSET_URL}/${project.main_image}" alt="${project.name}" class="img-fluid">
+    //                             <div class="img-overlay">
+    //                                 <h3>${project.name}</h3>
+    //                                 <p>${project.location} / ${project.status}</p>
+    //                             </div>
+    //                         </div>
+    //                     </a>
+    //                 </div>
+    //             `;
+    //             projectContainer.insertAdjacentHTML('beforeend', projectHTML);    
+    //         });
+
+    //         // imagesLoaded(projectContainer, function() {
+    //         //     const masonryGrid = document.querySelector('.masonry-grid');
+    //         //     new Masonry(masonryGrid, {
+    //         //         itemSelector: '.masonry-item',
+    //         //         percentPosition: true,
+    //         //     });
+    //         // });
+
+    //     } else {
+    //         console.error(`No project data found for category ID: ${categoryId}.`);
+    //     }
+    // }

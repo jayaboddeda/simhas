@@ -13977,3 +13977,87 @@ button:focus {
         padding: 40px 0;
     }
 }
+
+
+#project-home .img-container {
+  position: relative;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+#project-home .img-container img {
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+#project-home .img-container:hover img {
+  transform: scale(1.1);
+}
+#project-home .img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#project-home .img-container:hover .img-overlay {
+  opacity: 1;
+}
+#project-home .img-overlay h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+#project-home .img-overlay p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+#projectdetails_footer {
+  padding: 20px 0;
+}
+
+#projectdetails_footer .text-center {
+  margin-bottom: 20px; /* Adds some space between text and icons */
+}
+
+#projectdetails_footer .social-icon {
+  display: inline-block;
+  transition: fill 0.3s ease;
+}
+
+#projectdetails_footer .social-icon svg {
+  fill: grey;
+  transition: fill 0.3s ease;
+}
+
+#projectdetails_footer .social-icon:hover svg {
+  fill: white;
+}
+
+#projectdetails_footer .social-icon:hover[href*="facebook"] svg {
+  fill: #1877f2; /* Facebook Blue */
+}
+
+#projectdetails_footer .social-icon:hover[href*="youtube"] svg {
+  fill: #ff0000; /* YouTube Red */
+}
+
+#projectdetails_footer .social-icon:hover[href*="instagram"] svg {
+  fill: #c13584; /* Instagram Gradient */
+}
+
+#projectdetails_footer .social-icon:hover[href*="linkedin"] svg {
+  fill: #0077b5; /* LinkedIn Blue */
+}
+
+#projectdetails_footer .social-icon:hover[href*="x"] svg {
+  fill: #0e0e0e; /* LinkedIn Blue */
+}
