@@ -1290,13 +1290,7 @@ a:hover {
     display: none;
     color: #000;
   }
-  .page-info-2 .list-social {
-    position: absolute;
-    right: 0;
-    bottom: -webkit-calc(100% - 100px);
-    bottom: -moz-calc(100% - 100px);
-    bottom: calc(100% - 100px);
-  }
+
 }
 
 
@@ -5051,9 +5045,7 @@ button {
 .page-info-2 .list-social {
   position: absolute;
   right: 0;
-  bottom: -webkit-calc(100% - 10px);
-  bottom: -moz-calc(100% - 10px);
-  bottom: calc(100% - 10px);
+  bottom: 35vh;
 }
 .page-info-2 .list-social__item a {
   color: #fff;
@@ -14069,13 +14061,4 @@ button:focus {
 
 #projectdetails_footer .social-icon:hover[href*="x"] svg {
   fill: #0e0e0e; /* LinkedIn Blue */
-}
-
-
-@media(min-width: 800px){
-  .page-info-2 .list-social {
-    position: absolute;
-    right: 0;
-    bottom: 35vh;
-  }
 }
