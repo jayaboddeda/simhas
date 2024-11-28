@@ -1,25 +1,52 @@
+<?php
+// Include the shared API functions
+require_once 'api_functions.php';
+
+// Get the blog slug from the URL
+$slug_name = $_GET['slug'] ?? null;
+
+if (!$slug_name) {
+    echo "Blog not found in the URL.";
+    exit;
+}
+
+// Fetch the specific blog using the slug_name
+$blogsData = getblogs($slug_name); // Assuming getblogs() fetches the blog by slug_name
+$selectedBlog = $blogsData['data'][0] ?? null; // Assuming the response has a single blog data in the 'data' array
+
+$latestBlogsData = getblogs("",5); // Assuming this function fetches latest blogs
+$latestBlogs = $latestBlogsData['data'] ?? [];
+
+if (!$selectedBlog) {
+    echo "Blog not found.";
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags-->
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="description" content="Simha Associates">
     <meta name="author" content="Simhas">
+    <base href="http://localhost/www.simhas.com/">
     <meta name="keywords"
         content="Simha simhas Architects Interior planning design Hyderabad Bangalore Delhi Mumbai Commercial Residential">
 
     <!-- Title Page-->
-    <title>About Us</title>
+    <title><?= htmlspecialchars($selectedBlog['title']) ?></title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/themify-font/themify-icons.css" rel="stylesheet" media="all">
+
     <!-- Base fonts of theme-->
     <link href="css/poppins-font.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
@@ -28,17 +55,18 @@
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <!-- <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> -->
 
     <!-- Main CSS-->
     <link href="css/main.min.css" rel="stylesheet" media="all">
 
-    <!--Favicons-->
+    <!-- Favicons-->
     <link rel="shortcut icon" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" sizes="114x114" href="assets/Icons/header-icon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
 
 <body class="animsition js-preloader">
@@ -82,9 +110,6 @@
                                             </li>
                                             <li class="menu-item">
                                                 <a href="Client ">Client</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="blog">Blogs</a>
                                             </li>
                                             <li class="menu-item">
                                                 <a href="contact ">Contact</a>
@@ -142,11 +167,9 @@
                                 <a href="Client ">Client</a>
                             </li>
                             <li class="menu-item">
-                                <a href="blog">Blogs</a>
-                            </li>
-                            <li class="menu-item">
                                 <a href="contact ">Contact</a>
                             </li>
+                            
                         </ul>
                     </div>
                 </nav>
@@ -154,180 +177,76 @@
         </header>
         <!-- END HEADER-->
 
-        <!-- MAIN-->
-        <main id="main">
-            <!-- PAGE LINE-->
-            <div class="page-line">
-                <div class="container">
-                    <div class="page-line__inner">
-                        <div class="page-col"></div>
-                        <div class="page-col"></div>
-                        <div class="page-col"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- END PAGE LINE-->
-
-            <!-- PAGE HEADING-->
-            <section class="section p-t-100 p-b-65">
-                <div class="container">
-                    <div class="page-heading">
-                        <h4 class="title-sub title-sub--c8 m-b-15 ">OUR PHILOSOPHY</h4>
-                        <h2 class="title-A1">Listen, Think & Deliver</h2>
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE HEADING-->
-
-            <!-- PAGE IMAGE-->
-            <section class="section">
-                <div class="wrap wrap--w1790">
-                    <div class="container-fluid">
-                        <img class='justbw' src="assets/About/Sketch-1.jpg" alt="Page Image">
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE IMAGE-->
-
-            <!-- ABOUT US-->
-            <section class="section p-t-80">
-                <div class="container">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6">
-                            <div class="row no-gutters">
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">30</span>
-                                            <h5 class="media__title title-sub">Years of experience</h5>
-                                        </div>
+        <div class="blog-single gray-bg">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-8 m-15px-tb">
+                <article class="article">
+                            <div class="article-img">
+                                <img src="<?= htmlspecialchars(ASSET_URL . $selectedBlog['Image']) ?>" title="<?= htmlspecialchars($selectedBlog['title']) ?>" alt="<?= htmlspecialchars($selectedBlog['title']) ?>">
+                            </div>
+                            <div class="article-title">
+                                <h2><?= htmlspecialchars($selectedBlog['title']) ?></h2>
+                                <div class="media d-flex align-items-center">
+                                    <div class="avatar">
+                                        <img class="w-100 h-100" src="<?= htmlspecialchars(ASSET_URL . $selectedBlog['author_image']) ?>" title="<?= htmlspecialchars($selectedBlog['Author']) ?>" alt="<?= htmlspecialchars($selectedBlog['Author']) ?>">
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">100</span>
-                                            <h5 class="media__title title-sub">Happy clients</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">224</span>
-                                            <h5 class="media__title title-sub">completed projects</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">16</span>
-                                            <h5 class="media__title title-sub">design arwards</h5>
-                                        </div>
+                                    <div class="media-body">
+                                        <label><?= htmlspecialchars($selectedBlog['Author']) ?></label>
+                                        <span><?= date('d M Y', strtotime($selectedBlog['date_created'])) ?></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="text--s18-40 m-b-15">
-                                <strong class="text--c2">Simhas</strong>
+                            <div class="article-content">
+                                <?= $selectedBlog['description'] ?>
+                            </div>
+                        </article>
 
-                                is an Architecture and Design Practice Firm, focused
-                                on creative excellence and diversity in the built environment for
-                                the past 30 years
-                                . Our firm is
-                                a platform for the talented
-                                designers and having vast clientele
-                                . With vision, inspiration and
-                                shared international knowledge we deliver solutions that are
-                                appropriate for their location, communities and our clients
-                                . </p>
-                            <p class="text--s18-40">
-                                <strong class="text--c2">˚</strong>
-
-                                Our network across India provides
-                                clients with a breadth of design-led
-                                expertise and knowledge in
-                                architecture and interior design,
-                                building consultancy,
-                                masterplanning, landscape and
-                                urban design </p>
-                        </div>
-                    </div>
                 </div>
-            </section>
-            <!-- END ABOUT US-->
-
-          
-            <!-- END CLIENT-->
-
-            <!-- SERVICE-->
-            <section class="p-t-60 p-b-60">
-                <div class="container">
-                    <div class="section-title">
-                        <h5 class="title-sub">what we do</h5>
-                        <h2 class="title-1">Our specilization</h2>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-01.png" alt="architecture" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">architecture</a>
-                                    </h3>
-                                    <span class="number">01</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
+                <div class="col-lg-4 m-15px-tb blog-aside">
+    <!-- Latest Post -->
+    <div class="widget widget-latest-post">
+        <div class="widget-title">
+            <h3>Latest Post</h3>
+        </div>
+        <div class="widget-body">
+            <?php if (!empty($latestBlogs)) : ?>
+                <?php foreach ($latestBlogs as $latestBlog) : ?>
+                    <div class="latest-post-aside media d-flex">
+                        <div class="lpa-left media-body">
+                            <div class="lpa-title">
+                                <h5><a href="blogdetails/<?= htmlspecialchars($latestBlog['slug_name']) ?>">
+                                    <?= htmlspecialchars($latestBlog['title']) ?></a>
+                                </h5>
+                            </div>
+                            <div class="lpa-meta">
+                                <a class="name" href="#">
+                                    <?= htmlspecialchars($latestBlog['Author']) ?>
+                                </a>
+                                <a class="date" href="#">
+                                    <?= date('d M Y', strtotime($latestBlog['date_created'])) ?>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-02.png" alt="Interior" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">Interiors</a>
-                                    </h3>
-                                    <span class="number">02</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-03.png" alt="planning" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">planning</a>
-                                    </h3>
-                                    <span class="number">03</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
+                        <div class="lpa-right">
+                            <a href="blogdetails/<?= htmlspecialchars($latestBlog['slug_name']) ?>">
+                                <img src="<?= htmlspecialchars(ASSET_URL . $latestBlog['Image']) ?>" title="<?= htmlspecialchars($latestBlog['title']) ?>" alt="<?= htmlspecialchars($latestBlog['title']) ?>">
+                            </a>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!-- END SERVICE-->
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>No latest posts available.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+    <!-- End Latest Post -->
+</div>
+            </div>
+        </div>
+    </div>
 
-
-
-            <!-- TEAM-->
-
-            <!-- END TEAM-->
-        </main>
-        <!-- END MAIN-->
-
+        <!-- FOOTER-->
         <footer style="background-color: white; padding: 20px 0;" id="projectdetails_footer" >
             <div class="row align-items-center justify-content-center">
                 <div class="text-center mb-0 pr-4">
@@ -354,16 +273,15 @@
                 </div>
             </div>
         </footer>
+        <!-- END FOOTER-->
     </div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
-   
+
     <!-- Vendor JS-->
     <script src="vendor/animsition/animsition.min.js"></script>
-   
     <script src="vendor/isotope/isotope.pkgd.min.js"></script>
-    
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
@@ -371,4 +289,3 @@
 </body>
 
 </html>
-<!-- end document-->

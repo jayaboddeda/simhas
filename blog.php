@@ -1,9 +1,18 @@
+<?php
+// Include the shared API functions
+require_once 'api_functions.php';
+
+// Fetch blogs data
+$blogsData = getblogs();
+$blogs = $blogsData['data'] ?? [];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags-->
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="description" content="Simha Associates">
     <meta name="author" content="Simhas">
@@ -11,15 +20,15 @@
         content="Simha simhas Architects Interior planning design Hyderabad Bangalore Delhi Mumbai Commercial Residential">
 
     <!-- Title Page-->
-    <title>About Us</title>
+    <title>Blogs</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/themify-font/themify-icons.css" rel="stylesheet" media="all">
+
     <!-- Base fonts of theme-->
     <link href="css/poppins-font.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
@@ -28,17 +37,18 @@
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <!-- <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> -->
 
     <!-- Main CSS-->
     <link href="css/main.min.css" rel="stylesheet" media="all">
 
-    <!--Favicons-->
+    <!-- Favicons-->
     <link rel="shortcut icon" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" sizes="114x114" href="assets/Icons/header-icon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
 
 <body class="animsition js-preloader">
@@ -142,11 +152,12 @@
                                 <a href="Client ">Client</a>
                             </li>
                             <li class="menu-item">
-                                <a href="blog">Blogs</a>
-                            </li>
+                                                <a href="blog">Blogs</a>
+                                            </li>
                             <li class="menu-item">
                                 <a href="contact ">Contact</a>
                             </li>
+                            
                         </ul>
                     </div>
                 </nav>
@@ -154,180 +165,63 @@
         </header>
         <!-- END HEADER-->
 
-        <!-- MAIN-->
-        <main id="main">
-            <!-- PAGE LINE-->
-            <div class="page-line">
-                <div class="container">
-                    <div class="page-line__inner">
-                        <div class="page-col"></div>
-                        <div class="page-col"></div>
-                        <div class="page-col"></div>
+        <section class="blog-listing gray-bg">
+            <div class="container">
+                <div class="row align-items-start">
+                    <div class="col-lg-12 m-15px-tb">
+                        <div class="row">
+                            <?php if (!empty($blogs)) : ?>
+                                <?php foreach ($blogs as $blog) : ?>
+                                    <?php
+                                    // Format date
+                                    $dateCreated = new DateTime($blog['date_created']);
+                                    $day = $dateCreated->format('d');
+                                    $month = strtoupper($dateCreated->format('M'));
+                                    // Image URL
+                                    $imageURL = ASSET_URL . $blog['Image'];
+                                    // Blog description snippet (first 150 characters)
+                                    $descriptionSnippet = substr(strip_tags($blog['description']), 0, 150) . '...';
+                                    ?>
+                                    <div class="col-sm-4 m-b-30">
+                                        <div class="blog-grid h-100">
+                                            <div class="blog-img">
+                                                <div class="date">
+                                                    <span><?= $day ?></span>
+                                                    <label><?= $month ?></label>
+                                                </div>
+                                                <a href="blogdetails/<?= $blog['slug_name'] ?>">
+                                                    <img src="<?= htmlspecialchars($imageURL) ?>"
+                                                         title="<?= htmlspecialchars($blog['title']) ?>"
+                                                         alt="<?= htmlspecialchars($blog['title']) ?>">
+                                                </a>
+                                            </div>
+                                            <div class="blog-info">
+                                                <h5 >
+                                                    <a class="truncate-two-lines" href="blogdetails/<?= $blog['slug_name'] ?>">
+                                                        <?= htmlspecialchars($blog['title']) ?>
+                                                    </a>
+                                                </h5>
+                                                <p><?= htmlspecialchars($descriptionSnippet) ?></p>
+                                                <div class="btn-bar">
+                                                    <a href="blogdetails/<?= $blog['slug_name'] ?>" class="px-btn-arrow">
+                                                        <span>Read More</span>
+                                                        <i class="arrow"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <p>No blogs found.</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- END PAGE LINE-->
+        </section>
 
-            <!-- PAGE HEADING-->
-            <section class="section p-t-100 p-b-65">
-                <div class="container">
-                    <div class="page-heading">
-                        <h4 class="title-sub title-sub--c8 m-b-15 ">OUR PHILOSOPHY</h4>
-                        <h2 class="title-A1">Listen, Think & Deliver</h2>
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE HEADING-->
-
-            <!-- PAGE IMAGE-->
-            <section class="section">
-                <div class="wrap wrap--w1790">
-                    <div class="container-fluid">
-                        <img class='justbw' src="assets/About/Sketch-1.jpg" alt="Page Image">
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE IMAGE-->
-
-            <!-- ABOUT US-->
-            <section class="section p-t-80">
-                <div class="container">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6">
-                            <div class="row no-gutters">
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">30</span>
-                                            <h5 class="media__title title-sub">Years of experience</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">100</span>
-                                            <h5 class="media__title title-sub">Happy clients</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">224</span>
-                                            <h5 class="media__title title-sub">completed projects</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">16</span>
-                                            <h5 class="media__title title-sub">design arwards</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="text--s18-40 m-b-15">
-                                <strong class="text--c2">Simhas</strong>
-
-                                is an Architecture and Design Practice Firm, focused
-                                on creative excellence and diversity in the built environment for
-                                the past 30 years
-                                . Our firm is
-                                a platform for the talented
-                                designers and having vast clientele
-                                . With vision, inspiration and
-                                shared international knowledge we deliver solutions that are
-                                appropriate for their location, communities and our clients
-                                . </p>
-                            <p class="text--s18-40">
-                                <strong class="text--c2">˚</strong>
-
-                                Our network across India provides
-                                clients with a breadth of design-led
-                                expertise and knowledge in
-                                architecture and interior design,
-                                building consultancy,
-                                masterplanning, landscape and
-                                urban design </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END ABOUT US-->
-
-          
-            <!-- END CLIENT-->
-
-            <!-- SERVICE-->
-            <section class="p-t-60 p-b-60">
-                <div class="container">
-                    <div class="section-title">
-                        <h5 class="title-sub">what we do</h5>
-                        <h2 class="title-1">Our specilization</h2>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-01.png" alt="architecture" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">architecture</a>
-                                    </h3>
-                                    <span class="number">01</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-02.png" alt="Interior" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">Interiors</a>
-                                    </h3>
-                                    <span class="number">02</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-03.png" alt="planning" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">planning</a>
-                                    </h3>
-                                    <span class="number">03</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END SERVICE-->
-
-
-
-            <!-- TEAM-->
-
-            <!-- END TEAM-->
-        </main>
-        <!-- END MAIN-->
-
+        <!-- FOOTER-->
         <footer style="background-color: white; padding: 20px 0;" id="projectdetails_footer" >
             <div class="row align-items-center justify-content-center">
                 <div class="text-center mb-0 pr-4">
@@ -354,16 +248,15 @@
                 </div>
             </div>
         </footer>
+        <!-- END FOOTER-->
     </div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
-   
+
     <!-- Vendor JS-->
     <script src="vendor/animsition/animsition.min.js"></script>
-   
     <script src="vendor/isotope/isotope.pkgd.min.js"></script>
-    
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
@@ -371,4 +264,3 @@
 </body>
 
 </html>
-<!-- end document-->

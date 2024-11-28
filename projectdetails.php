@@ -1,49 +1,231 @@
+<?php
+// API base URL and authorization token
+define('API_BASE_URL', 'https://admin.simhas.klads.co.in');
+define('TOKEN', 'eVWpHfuEu9TzlRyxFSzNXQRQM-Io--ul');
+
+// Fetch API function using cURL
+function fetchAPI($endpoint, $method = 'GET', $body = null) {
+    $url = API_BASE_URL . $endpoint;
+    $headers = [
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . TOKEN,
+    ];
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+    if ($body) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+    }
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
+}
+
+// Get project by ID
+function getProjectById($id) {
+    return fetchAPI("/items/projects/{$id}");
+}
+
+// Get project files (images)
+function getProjectFiles($id) {
+    if (is_array($id)) {
+        $idList = implode(',', $id);
+    } else {
+        $idList = $id; // Handle case where it's a single ID
+    }
+    return fetchAPI("/items/projects_files?filter={\"id\":{\"_in\":[$idList]}}");
+}
+
+
+// Asset URL constant
+define('ASSET_URL', API_BASE_URL . '/assets/');
+
+// Get project ID from the URL
+$project_id = $_GET['id'] ?? null;
+
+if (!$project_id) {
+    echo "Project ID not found in the URL.";
+    exit;
+}
+
+// Fetch the project details and files
+$project_data = getProjectById($project_id);
+$project = $project_data['data'] ?? null;
+
+if (!$project) {
+    echo "Project details not found.";
+    exit;
+}
+
+// Check if description is a string or an array
+$project_description = '';
+if (isset($project['description'])) {
+    if (is_array($project['description'])) {
+        $project_description = implode(', ', $project['description']);
+    } else {
+        $project_description = $project['description'];
+    }
+}
+
+$project_files_data = getProjectFiles($project['internal_images']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8" >
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="Simha Associates">
+    <base href="http://localhost/www.simhas.com/">
+    <meta name="description" content="<?= htmlspecialchars($project['page_description']) ?>">
     <meta name="author" content="Simhas">
-    <meta name="keywords"
-        content="Simha simhas Architects Interior planning design Hyderabad Bangalore Delhi Mumbai Commercial Residential">
+    <meta name="keywords" content="<?= htmlspecialchars($project['page_keywords']) ?>">
+    <!-- Title Page -->
+    <title><?= htmlspecialchars($project['page_tittle']) ?></title>
 
-    <!-- Title Page-->
-    <title>About Us</title>
-
-    <!-- Icons font CSS-->
+    <!-- Icons font CSS -->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/themify-font/themify-icons.css" rel="stylesheet" media="all">
-    <!-- Base fonts of theme-->
-    <link href="css/poppins-font.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-
-    <!-- Bootstrap CSS-->
+    <!-- Bootstrap CSS -->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
+    <!-- Vendor CSS -->
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <!-- <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> -->
-
-    <!-- Main CSS-->
+    <!-- Main CSS -->
     <link href="css/main.min.css" rel="stylesheet" media="all">
 
-    <!--Favicons-->
+    <!-- Favicons -->
     <link rel="shortcut icon" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" href="assets/Icons/header-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/Icons/header-icon.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/Icons/header-icon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+
+    <style>
+        .zoomD {
+            width: 400px;
+            height: 300px;
+            cursor: pointer;
+            margin: 10px 0;
+            object-fit: cover;
+        }
+
+        #lb-back {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all ease 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #lb-back.show {
+            visibility: visible;
+            opacity: 1;
+            background-color: black;
+        }
+
+        #lb-img {
+    position: relative;
+    width: 80vw; /* Adjust based on your needs */
+    height: 80vh; /* Adjust based on your needs */
+    background-color: black;
+    overflow: hidden;
+}
+
+#lb-img img {
+    width: 100;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+
+        #lb-close,
+        #lb-prev,
+        #lb-next {
+            position: absolute;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 15px; /* Increase padding to make the buttons larger */
+            cursor: pointer;
+            font-size: 30px; /* Increase font size for larger buttons */
+            z-index: 1000;
+        }
+
+        #lb-close {
+            top: 30px;
+            right: 10px;
+        }
+
+        #lb-prev {
+            left: 20px; /* Increase left position for better visibility */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #lb-next {
+            right: 20px; /* Increase right position for better visibility */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+/* Default style for larger screens */
+#mainimagecontainer{
+    width: 350px;
+    height: 350px;
+}
+#mainimagecontainer img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preserve-format {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.description-container p{
+
+    margin: 10px 0;
+    line-height: 1.8;
+    
+}
+
+
+    </style>
 </head>
 
 <body class="animsition js-preloader">
     <div class="page-wrapper">
-        <!-- HEADER-->
+        <!-- HEADER -->
         <header id="header">
             <div class="header header-1 d-none d-lg-block js-header-1">
                 <div class="header__bar">
@@ -89,10 +271,8 @@
                                             <li class="menu-item">
                                                 <a href="contact ">Contact</a>
                                             </li>
-                                            
                                         </ul>
                                     </nav>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -142,8 +322,8 @@
                                 <a href="Client ">Client</a>
                             </li>
                             <li class="menu-item">
-                                <a href="blog">Blogs</a>
-                            </li>
+                                                <a href="blog">Blogs</a>
+                                            </li>
                             <li class="menu-item">
                                 <a href="contact ">Contact</a>
                             </li>
@@ -151,184 +331,71 @@
                     </div>
                 </nav>
             </div>
+
         </header>
-        <!-- END HEADER-->
+        <!-- END HEADER -->
 
-        <!-- MAIN-->
+        <!-- MAIN -->
         <main id="main">
-            <!-- PAGE LINE-->
-            <div class="page-line">
-                <div class="container">
-                    <div class="page-line__inner">
-                        <div class="page-col"></div>
-                        <div class="page-col"></div>
-                        <div class="page-col"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- END PAGE LINE-->
-
-            <!-- PAGE HEADING-->
-            <section class="section p-t-100 p-b-65">
-                <div class="container">
-                    <div class="page-heading">
-                        <h4 class="title-sub title-sub--c8 m-b-15 ">OUR PHILOSOPHY</h4>
-                        <h2 class="title-A1">Listen, Think & Deliver</h2>
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE HEADING-->
-
-            <!-- PAGE IMAGE-->
-            <section class="section">
-                <div class="wrap wrap--w1790">
-                    <div class="container-fluid">
-                        <img class='justbw' src="assets/About/Sketch-1.jpg" alt="Page Image">
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE IMAGE-->
-
-            <!-- ABOUT US-->
-            <section class="section p-t-80">
-                <div class="container">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6">
-                            <div class="row no-gutters">
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">30</span>
-                                            <h5 class="media__title title-sub">Years of experience</h5>
-                                        </div>
+            <div class="container-fluid">
+                <section class="m-3 m-md-5">
+                    <div>
+                        <div class="row">
+                            <!-- Right Column (Image) -->
+                            <div class="col-md-5 order-1 order-md-2 p-0 mb-3 mb-md-0" id="mainimagecontainer">
+                                <img src="<?= ASSET_URL . $project['main_image'] ?>" id="mainimage" alt="<?= htmlspecialchars($project['name']) ?>" class="img-fluid">
+                            </div>
+                            <!-- Left Column (Text) -->
+                            <div class="col-md-7 order-2 order-md-1 mb-4 p-0">
+                                <h1 class="font-weight-bold"><?= htmlspecialchars($project['name']) ?></h1>
+                                <div class="mt-4">
+                                    <div class="d-flex mb-3">
+                                        <div class="font-weight-bold" style="min-width: 120px;">Location:</div>
+                                        <div><?= htmlspecialchars($project['location']) ?></div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="font-weight-bold" style="min-width: 120px;">Status:</div>
+                                        <div><?= htmlspecialchars($project['status']) ?></div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="font-weight-bold" style="min-width: 120px;">Area:</div>
+                                        <div><?= htmlspecialchars($project['area']) ?></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">100</span>
-                                            <h5 class="media__title title-sub">Happy clients</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">224</span>
-                                            <h5 class="media__title title-sub">completed projects</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media-statistic-2">
-                                        <div class="media__body">
-                                            <span class="media__number js-counterup">16</span>
-                                            <h5 class="media__title title-sub">design arwards</h5>
-                                        </div>
-                                    </div>
+                                <div class="description-container m-r-20">
+                                <p id="project-description" class="mt-4">     
+                                <?= $project['description']; ?>
+
+                                </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <p class="text--s18-40 m-b-15">
-                                <strong class="text--c2">Simhas</strong>
-
-                                is an Architecture and Design Practice Firm, focused
-                                on creative excellence and diversity in the built environment for
-                                the past 30 years
-                                . Our firm is
-                                a platform for the talented
-                                designers and having vast clientele
-                                . With vision, inspiration and
-                                shared international knowledge we deliver solutions that are
-                                appropriate for their location, communities and our clients
-                                . </p>
-                            <p class="text--s18-40">
-                                <strong class="text--c2">˚</strong>
-
-                                Our network across India provides
-                                clients with a breadth of design-led
-                                expertise and knowledge in
-                                architecture and interior design,
-                                building consultancy,
-                                masterplanning, landscape and
-                                urban design </p>
-                        </div>
                     </div>
+                </section>
+
+                <div class="projectdetails-images image-grid text-center m-md-5">
+                <div id="lb-back">
+                        <div id="lb-img"></div>
+                        <button id="lb-close">&times;</button>
+                        <button id="lb-prev">&#8249;</button>
+                        <button id="lb-next">&#8250;</button>
+                    </div>
+                <?php
+                    if (isset($project_files_data['data']) && is_array($project_files_data['data'])) {
+                        foreach ($project_files_data['data'] as $file) {
+                            echo '<img class="zoomD" src="' . ASSET_URL . $file['directus_files_id'] . '" alt="Project Image" />';
+                        }
+                    } else {
+                        echo "No images available.";
+                    }
+                    ?>
                 </div>
-            </section>
-            <!-- END ABOUT US-->
-
-          
-            <!-- END CLIENT-->
-
-            <!-- SERVICE-->
-            <section class="p-t-60 p-b-60">
-                <div class="container">
-                    <div class="section-title">
-                        <h5 class="title-sub">what we do</h5>
-                        <h2 class="title-1">Our specilization</h2>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-01.png" alt="architecture" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">architecture</a>
-                                    </h3>
-                                    <span class="number">01</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-02.png" alt="Interior" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">Interiors</a>
-                                    </h3>
-                                    <span class="number">02</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <article class="media media-service">
-                                <figure class="media__img">
-                                    <img src="images/icon/service-03.png" alt="planning" />
-                                </figure>
-                                <div class="media__title">
-                                    <h3 class="title">
-                                        <a href="#">planning</a>
-                                    </h3>
-                                    <span class="number">03</span>
-                                </div>
-                                <!-- <p class="media__text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invest ntore veritatis et quasi architecto beatae vitaest dicta sunt explicabo.
-                                    Nemo enim ipsam vost lmat oluptatem quia voluptas sit aspernatur</p> -->
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END SERVICE-->
-
-
-
-            <!-- TEAM-->
-
-            <!-- END TEAM-->
+            </div>
         </main>
-        <!-- END MAIN-->
+        <!-- END MAIN -->
 
-        <footer style="background-color: white; padding: 20px 0;" id="projectdetails_footer" >
+        <!-- FOOTER -->
+        <footer style="background-color: white; padding: 20px 0;" id="projectdetails_footer">
             <div class="row align-items-center justify-content-center">
                 <div class="text-center mb-0 pr-4">
                     <p class="mb-0">
@@ -346,29 +413,67 @@
                         <svg height="30" viewBox="0 0 512 512" width="30" xmlns="http://www.w3.org/2000/svg" id="fi_1384015"><path d="m305 256c0 27.0625-21.9375 49-49 49s-49-21.9375-49-49 21.9375-49 49-49 49 21.9375 49 49zm0 0"></path><path d="m370.59375 169.304688c-2.355469-6.382813-6.113281-12.160157-10.996094-16.902344-4.742187-4.882813-10.515625-8.640625-16.902344-10.996094-5.179687-2.011719-12.960937-4.40625-27.292968-5.058594-15.503906-.707031-20.152344-.859375-59.402344-.859375-39.253906 0-43.902344.148438-59.402344.855469-14.332031.65625-22.117187 3.050781-27.292968 5.0625-6.386719 2.355469-12.164063 6.113281-16.902344 10.996094-4.882813 4.742187-8.640625 10.515625-11 16.902344-2.011719 5.179687-4.40625 12.964843-5.058594 27.296874-.707031 15.5-.859375 20.148438-.859375 59.402344 0 39.25.152344 43.898438.859375 59.402344.652344 14.332031 3.046875 22.113281 5.058594 27.292969 2.359375 6.386719 6.113281 12.160156 10.996094 16.902343 4.742187 4.882813 10.515624 8.640626 16.902343 10.996094 5.179688 2.015625 12.964844 4.410156 27.296875 5.0625 15.5.707032 20.144532.855469 59.398438.855469 39.257812 0 43.90625-.148437 59.402344-.855469 14.332031-.652344 22.117187-3.046875 27.296874-5.0625 12.820313-4.945312 22.953126-15.078125 27.898438-27.898437 2.011719-5.179688 4.40625-12.960938 5.0625-27.292969.707031-15.503906.855469-20.152344.855469-59.402344 0-39.253906-.148438-43.902344-.855469-59.402344-.652344-14.332031-3.046875-22.117187-5.0625-27.296874zm-114.59375 162.179687c-41.691406 0-75.488281-33.792969-75.488281-75.484375s33.796875-75.484375 75.488281-75.484375c41.6875 0 75.484375 33.792969 75.484375 75.484375s-33.796875 75.484375-75.484375 75.484375zm78.46875-136.3125c-9.742188 0-17.640625-7.898437-17.640625-17.640625s7.898437-17.640625 17.640625-17.640625 17.640625 7.898437 17.640625 17.640625c-.003906 9.742188-7.898437 17.640625-17.640625 17.640625zm0 0"></path><path d="m256 0c-141.363281 0-256 114.636719-256 256s114.636719 256 256 256 256-114.636719 256-256-114.636719-256-256-256zm146.113281 316.605469c-.710937 15.648437-3.199219 26.332031-6.832031 35.683593-7.636719 19.746094-23.246094 35.355469-42.992188 42.992188-9.347656 3.632812-20.035156 6.117188-35.679687 6.832031-15.675781.714844-20.683594.886719-60.605469.886719-39.925781 0-44.929687-.171875-60.609375-.886719-15.644531-.714843-26.332031-3.199219-35.679687-6.832031-9.8125-3.691406-18.695313-9.476562-26.039063-16.957031-7.476562-7.339844-13.261719-16.226563-16.953125-26.035157-3.632812-9.347656-6.121094-20.035156-6.832031-35.679687-.722656-15.679687-.890625-20.6875-.890625-60.609375s.167969-44.929688.886719-60.605469c.710937-15.648437 3.195312-26.332031 6.828125-35.683593 3.691406-9.808594 9.480468-18.695313 16.960937-26.035157 7.339844-7.480469 16.226563-13.265625 26.035157-16.957031 9.351562-3.632812 20.035156-6.117188 35.683593-6.832031 15.675781-.714844 20.683594-.886719 60.605469-.886719s44.929688.171875 60.605469.890625c15.648437.710937 26.332031 3.195313 35.683593 6.824219 9.808594 3.691406 18.695313 9.480468 26.039063 16.960937 7.476563 7.34375 13.265625 16.226563 16.953125 26.035157 3.636719 9.351562 6.121094 20.035156 6.835938 35.683593.714843 15.675781.882812 20.683594.882812 60.605469s-.167969 44.929688-.886719 60.605469zm0 0"></path></svg>
                     </a>
                     <a href="https://www.linkedin.com/company/simhaassociate/" target="_blank" class="social-icon">
-                        <svg height="30" viewBox="0 0 152 152" width="30" xmlns="http://www.w3.org/2000/svg" id="fi_3669739"><g id="Layer_2" data-name="Layer 2"><g id="Color"><path id="_10.Linkedin" d="m76 0a76 76 0 1 0 76 76 76 76 0 0 0 -76-76zm-22.1 116h-16.58v-53.41h16.58zm-8.3-60.7a9.65 9.65 0 1 1 9.61-9.7 9.68 9.68 0 0 1 -9.61 9.7zm70.4 60.7h-16.57v-26c0-6.2-.12-14.15-8.62-14.15s-10 6.74-10 13.7v26.45h-16.51v-53.41h15.91v7.28h.23c2.21-4.2 7.62-8.63 15.69-8.63 16.78 0 19.87 11.06 19.87 25.42z" data-name="10.Linkedin"></path></g></g></svg>
+                        <svg height="30" viewBox="0 0 152 152" width="30" xmlns="http://www.w3.org/2000/svg" id="fi_3669739"><g id="Layer_2" data-name="Layer 2"><g id="Color"><path id="_10.Linkedin" d="m76 0a76 76 0 1 0 76 76 76 76 0 0 0 -76-76zm-22.1 116h-16.58v-53.41h16.58zm-8.3-60.7a9.65 9.65 0 1 1 9.61-9.7 9.68 9.68 0 0 1 -9.61 9.7zm70.4 60.7h-16.57v-26c0-6.2-.12-14.15-8.62-14.15s-10 6.74-10 13.7v26.45h-16.51v-53.41h15.91v7.28h.23c2.21-4.2 7.62-8.63 15.69-8.63 16.78 0 19.87 11.06 19.87 25.42z" data-name="10.Linkedin"></path></g></g></g></svg>
                     </a>
                     <a href="https://x.com/SimhaAssociates" target="_blank" class="social-icon">
-                        <svg width="30" height="30" id="fi_5969020" enable-background="new 0 0 1227 1227" viewBox="0 0 1227 1227" xmlns="http://www.w3.org/2000/svg"><g><path d="m613.5 0c-338.815 0-613.5 274.685-613.5 613.5s274.685 613.5 613.5 613.5 613.5-274.685 613.5-613.5-274.685-613.5-613.5-613.5z"></path><path d="m680.617 557.98 262.632-305.288h-62.235l-228.044 265.078-182.137-265.078h-210.074l275.427 400.844-275.427 320.142h62.239l240.82-279.931 192.35 279.931h210.074l-285.641-415.698zm-335.194-258.435h95.595l440.024 629.411h-95.595z" fill="#fff"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                        <svg width="30" height="30" id="fi_5969020" enable-background="new 0 0 1227 1227" viewBox="0 0 1227 1227" xmlns="http://www.w3.org/2000/svg"><g><path d="m613.5 0c-338.815 0-613.5 274.685-613.5 613.5s274.685 613.5 613.5 613.5 613.5-274.685 613.5-613.5-274.685-613.5-613.5-613.5z"></path><path d="m680.617 557.98 262.632-305.288h-62.235l-228.044 265.078-182.137-265.078h-210.074l275.427 400.844-275.427 320.142h62.239l240.82-279.931 192.35 279.931h210.074l-285.641-415.698zm-335.194-258.435h95.595l440.024 629.411h-95.595z" fill="#fff"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                     </a>
                 </div>
             </div>
         </footer>
+        <!-- END FOOTER -->
     </div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
-   
-    <!-- Vendor JS-->
+    <!-- Vendor JS -->
     <script src="vendor/animsition/animsition.min.js"></script>
-   
     <script src="vendor/isotope/isotope.pkgd.min.js"></script>
-    
-
-    <!-- Main JS-->
+    <!-- Main JS -->
     <script src="js/global.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            let currentImageIndex = 0;
+            let imagesArray = [];
+
+            // Populate imagesArray with project images
+            $(".projectdetails-images img").each(function (index) {
+                imagesArray.push($(this).attr('src'));
+                $(this).on('click', function () {
+                    currentImageIndex = index;
+                    showImage(currentImageIndex);
+                });
+            });
+
+            function showImage(index) {
+                $("#lb-img").html(`<img src="${imagesArray[index]}" />`);
+                $("#lb-back").addClass("show");
+            }
+
+            // Lightbox controls
+            $("#lb-close").click(function () {
+                $("#lb-back").removeClass("show");
+            });
+
+            $("#lb-prev").click(function () {
+                currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : imagesArray.length - 1;
+                showImage(currentImageIndex);
+            });
+
+            $("#lb-next").click(function () {
+                currentImageIndex = (currentImageIndex < imagesArray.length - 1) ? currentImageIndex + 1 : 0;
+                showImage(currentImageIndex);
+            });
+
+            // Close lightbox when clicking on the background
+            $("#lb-back").click(function (e) {
+                if (e.target.id === "lb-back" || e.target.id === "lb-close") {
+                    $(this).removeClass("show");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
-<!-- end document-->

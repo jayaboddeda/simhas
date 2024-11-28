@@ -1,0 +1,24 @@
+RewriteEngine On
+
+# Skip existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Remove .php extension from URLs if the .php file exists
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L,QSA]
+
+# Remove .html extension from URLs if the .html file exists
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.html [L,QSA]
+
+# Existing rewrite rules
+RewriteRule ^projectdetails/([0-9]+)$ projectdetails.php?id=$1 [L,QSA]
+RewriteRule ^details/([0-9]+)$ details.html?id=$1 [L,QSA]
+
+
+# For blog details with slug_name
+RewriteRule ^blogdetails/([a-zA-Z0-9_-]+)$ blogdetails.php?slug=$1 [L,QSA]
+
+# For other details (if you're using slugs there as well)
+RewriteRule ^details/([a-zA-Z0-9_-]+)$ details.html?slug=$1 [L,QSA]

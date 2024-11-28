@@ -60,7 +60,7 @@ async function fetchAPI(endpoint, method = "GET", body = null, headers = {}) {
 
 
 async function getprojects(id){
-    return await fetchAPI(`/items/projects?filter={ "category": { "_in":[${id}] }}`)
+    return await fetchAPI(`/items/projects?filter={ "category": { "_in":[${id}] }}&sort=-date_created`)
 }
 
 async function getprojectbyid(id){
@@ -144,7 +144,7 @@ async function loadProjectsByCategory(categoryId) {
             const projectHTML = `
                 <div class="col-lg-4 col-md-6 masonry-item">
                     <div class="img-container">
-                 <a class="w-100 h-100" href="projectdetails.html?id=${project.id}">
+                 <a class="w-100 h-100" href="projectdetails/${project.id}">
 
                         <img src="${ASSET_URL}/${project.main_image}" alt="${project.name}" class="img-fluid">
                         <div class="img-overlay">
